@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Amin | Senior Data Analyst & Power BI Specialist</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js for Data Analytics Showcase -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            cardHover: '#1F2937',
+                            border: '#1F2937',
+                            cyan: '#06B6D4',
+                            blue: '#3B82F6',
+                            purple: '#8B5CF6',
+                            accent: '#00F2FE'
+                        }
+                    },
+                    fontFamily: {
+                        en: ['Inter', 'sans-serif'],
+                        ar: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #F3F4F6;
+            font-family: 'Inter', 'Cairo', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.3);
+        }
+
+        .glow-card:hover {
+            box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.25);
+            border-color: rgba(6, 182, 212, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-100 antialiased selection:bg-brand-cyan selection:text-black">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-blue flex items-center justify-center font-bold text-xl text-black shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                        MA
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-white group-hover:text-brand-cyan transition-colors">
+                        Mohamed<span class="text-brand-cyan">.Amin</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse font-medium text-sm">
+                    <a href="#about" class="hover:text-brand-cyan transition-colors" data-i18n="nav_about">About</a>
+                    <a href="#skills" class="hover:text-brand-cyan transition-colors" data-i18n="nav_skills">Skills & Tools</a>
+                    <a href="#kpi-demo" class="hover:text-brand-cyan transition-colors" data-i18n="nav_demo">Live Dashboard</a>
+                    <a href="#projects" class="hover:text-brand-cyan transition-colors" data-i18n="nav_projects">Projects</a>
+                    <a href="#experience" class="hover:text-brand-cyan transition-colors" data-i18n="nav_exp">Experience</a>
+                    <a href="#contact" class="hover:text-brand-cyan transition-colors" data-i18n="nav_contact">Contact</a>
+                </nav>
+
+                <!-- Actions: Language Toggle & CTA -->
+                <div class="flex items-center space-x-4 rtl:space-x-reverse">
+                    <button id="lang-toggle-btn" onclick="toggleLanguage()" class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1.5 rounded-lg border border-brand-border hover:border-brand-cyan text-xs font-semibold uppercase tracking-wider transition-all bg-brand-card hover:bg-brand-cardHover">
+                        <i class="fa-solid fa-globe text-brand-cyan"></i>
+                        <span id="lang-text">العربية</span>
+                    </button>
+
+                    <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 transition-all">
+                        <span data-i18n="hire_me">Get In Touch</span>
+                    </a>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-brand-border px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_about">About</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_skills">Skills & Tools</a>
+            <a href="#kpi-demo" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_demo">Live Dashboard</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_projects">Projects</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_exp">Experience</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section id="about" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
+            <!-- Background Glows -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Column: Intro text -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
+                        <div class="inline-flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/30 text-brand-cyan text-xs font-semibold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+                            <span data-i18n="hero_badge">5+ Years Transforming Business Data</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                            <span data-i18n="hero_title_prefix">Hello, I'm</span> <br/>
+                            <span class="text-gradient" data-i18n="hero_name">Mohamed Amin</span>
+                        </h1>
+
+                        <h2 class="text-xl sm:text-2xl font-semibold text-gray-300" data-i18n="hero_subtitle">
+                            Senior Data Analyst & Power BI Developer
+                        </h2>
+
+                        <p class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0" data-i18n="hero_desc">
+                            Turning complex datasets into intuitive, high-impact business decisions. Expert in Power BI dashboard design, advanced DAX modeling, SQL query optimization, star schema architecture, and automated analytics solutions.
+                        </p>
+
+                        <!-- Key Stats Bar -->
+                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-brand-border/60 max-w-lg mx-auto lg:mx-0">
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-cyan">5+</p>
+                                <p class="text-xs text-gray-400" data-i18n="stat_exp">Years Experience</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-blue">80+</p>
+                                <p class="text-xs text-gray-400" data-i18n="stat_dashboards">Dashboards Built</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple">99.8%</p>
+                                <p class="text-xs text-gray-400" data-i18n="stat_accuracy">Data Accuracy</p>
+                            </div>
+                        </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#projects" class="px-7 py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all flex items-center space-x-2 rtl:space-x-reverse">
+                                <span data-i18n="btn_projects">Explore Projects</span>
+                                <i class="fa-solid fa-arrow-right text-xs rtl:rotate-180"></i>
+                            </a>
+                            <a href="#kpi-demo" class="px-7 py-3.5 rounded-xl font-semibold bg-brand-card border border-brand-border hover:border-brand-cyan text-gray-200 hover:text-white transition-all flex items-center space-x-2 rtl:space-x-reverse">
+                                <i class="fa-solid fa-chart-line text-brand-cyan"></i>
+                                <span data-i18n="btn_demo">Live Analytics Demo</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive Decorative Card -->
+                    <div class="lg:col-span-5">
+                        <div class="relative mx-auto max-w-md">
+                            <!-- Card Glowing Background -->
+                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple opacity-30 blur-xl"></div>
+                            
+                            <!-- Main Visual Card -->
+                            <div class="relative bg-brand-card border border-brand-border p-6 rounded-3xl space-y-6 shadow-2xl">
+                                <div class="flex items-center justify-between border-b border-brand-border/60 pb-4">
+                                    <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center">
+                                            <i class="fa-solid fa-user-gear text-brand-cyan text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-white text-base">Mohamed Amin</p>
+                                            <p class="text-xs text-brand-cyan font-mono" data-i18n="card_status">● Available for Projects</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs bg-brand-border px-2.5 py-1 rounded-md text-gray-300 font-mono">DAX / SQL</span>
+                                </div>
+
+                                <!-- Mini Metrics Preview -->
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-brand-dark/80 p-3.5 rounded-2xl border border-brand-border">
+                                        <div class="flex justify-between items-center text-xs text-gray-400 mb-1">
+                                            <span data-i18n="hero_card_m1">DAX Performance</span>
+                                            <i class="fa-solid fa-bolt text-amber-400"></i>
+                                        </div>
+                                        <p class="text-lg font-bold text-white">Optimal</p>
+                                        <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
+                                            <div class="bg-brand-cyan h-full rounded-full w-[95%]"></div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-brand-dark/80 p-3.5 rounded-2xl border border-brand-border">
+                                        <div class="flex justify-between items-center text-xs text-gray-400 mb-1">
+                                            <span data-i18n="hero_card_m2">Data Security</span>
+                                            <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                                        </div>
+                                        <p class="text-lg font-bold text-white">RLS Enabled</p>
+                                        <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
+                                            <div class="bg-emerald-400 h-full rounded-full w-[100%]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Schema Visual Badge -->
+                                <div class="bg-brand-dark/60 p-4 rounded-2xl border border-brand-border/60 text-xs text-gray-300 space-y-2">
+                                    <div class="flex justify-between items-center font-mono text-brand-cyan">
+                                        <span><i class="fa-solid fa-diagram-project mr-1.5 rtl:ml-1.5"></i> Star Schema Model</span>
+                                        <span class="text-emerald-400">Active</span>
+                                    </div>
+                                    <p class="text-gray-400 text-xs" data-i18n="hero_card_desc">Designed for high-performance enterprise reporting and seamless cross-filtering.</p>
+                                </div>
+
+                                <!-- Quick Tech Pills -->
+                                <div class="flex flex-wrap gap-2 text-xs">
+                                    <span class="px-2.5 py-1 rounded-lg bg-cyan-950/40 text-cyan-300 border border-cyan-800/40">Power BI</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-blue-950/40 text-blue-300 border border-blue-800/40">Power Query</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-purple-950/40 text-purple-300 border border-purple-800/40">SQL Server</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-emerald-950/40 text-emerald-300 border border-emerald-800/40">Python</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 bg-brand-dark/50 relative border-t border-brand-border/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="skills_subtitle">Core Competencies</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="skills_title">Technical Mastery & Data Stack</p>
+                    <p class="text-gray-400 text-sm sm:text-base" data-i18n="skills_desc">Over 5 years mastering the full lifecycle of data visualization, modeling, ETL pipeline development, and data governance.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Power BI & DAX -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_pbi_title">Power BI & Advanced DAX</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_pbi_desc">Building dynamic, interactive dashboards with complex DAX measures, time intelligence, calculation groups, and row-level security (RLS).</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>DAX Optimization & Performance Tuning</li>
+                            <li>Row-Level Security (RLS & Dynamic RLS)</li>
+                            <li>Custom Visualizations & Drillthroughs</li>
+                        </ul>
+                    </div>
+
+                    <!-- Data Modeling -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-sitemap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_model_title">Data Modeling & Star Schema</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_model_desc">Architecting efficient Star and Snowflake schemas, relationship cardinalities, data normalization, and aggregate table optimization.</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>Star / Snowflake Schema Architecture</li>
+                            <li>Fact & Dimension Tables Normalization</li>
+                            <li>Data Governance & Scalability</li>
+                        </ul>
+                    </div>
+
+                    <!-- SQL Analytics -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_sql_title">SQL Queries & Data ETL</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_sql_desc">Extracting, transforming, and querying relational databases using CTEs, window functions, complex joins, and stored procedures.</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>SQL Server / PostgreSQL / MySQL</li>
+                            <li>Power Query (M Code) Transformation</li>
+                            <li>Data Cleansing & Aggregation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Automation & Python -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_auto_title">Automation & Python</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_auto_desc">Automating repetitive reporting tasks using Google Apps Script, Python scripts (Pandas/Numpy), and scheduled data refreshes.</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>Python (Pandas, Matplotlib, Seaborn)</li>
+                            <li>Google Apps Script & Sheet Automation</li>
+                            <li>Automated Refresh Pipelines</li>
+                        </ul>
+                    </div>
+
+                    <!-- Advanced Excel & Financial Modeling -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_excel_title">Advanced Excel & Analytics</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_excel_desc">Expert-level spreadsheet modeling using Power Pivot, Power Query, complex formulas, macros, and financial metrics analysis.</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>Power Pivot & Data Model Integration</li>
+                            <li>XLOOKUP, INDEX/MATCH, Dynamic Arrays</li>
+                            <li>Financial & Variance Analysis</li>
+                        </ul>
+                    </div>
+
+                    <!-- Business Intelligence & Strategy -->
+                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_bi_title">Business Intelligence Strategy</h3>
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_bi_desc">Translating stakeholder requirements into KPIs, building executive summaries, and conducting cohort & trend analysis.</p>
+                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
+                            <li>KPI Definition & Executive Dashboards</li>
+                            <li>Customer Behavior & Sales Analytics</li>
+                            <li>Cross-Functional Collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kpi-demo" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <!-- Header with Controls -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-brand-border">
+                        <div>
+                            <div class="inline-flex items-center space-x-2 rtl:space-x-reverse text-brand-cyan text-xs font-bold uppercase tracking-widest mb-1">
+                                <i class="fa-solid fa-desktop"></i>
+                                <span data-i18n="demo_badge">Interactive Component</span>
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="demo_title">Embedded Analytics Demo Dashboard</h2>
+                            <p class="text-gray-400 text-xs sm:text-sm mt-1" data-i18n="demo_desc">Test the live filtering functionality below to experience interactive reporting capabilities.</p>
+                        </div>
+
+                        <!-- Filter Buttons -->
+                        <div class="flex flex-wrap items-center gap-2 bg-brand-dark p-1.5 rounded-xl border border-brand-border">
+                            <button onclick="updateDemoChart('all')" id="btn-filter-all" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-brand-cyan text-black">
+                                <span data-i18n="filter_all">All Regions</span>
+                            </button>
+                            <button onclick="updateDemoChart('north')" id="btn-filter-north" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
+                                <span data-i18n="filter_north">North America</span>
+                            </button>
+                            <button onclick="updateDemoChart('emea')" id="btn-filter-emea" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
+                                <span data-i18n="filter_emea">EMEA</span>
+                            </button>
+                            <button onclick="updateDemoChart('apac')" id="btn-filter-apac" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
+                                <span data-i18n="filter_apac">APAC</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live KPI Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
+                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
+                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_revenue">Total Revenue</p>
+                            <h3 id="kpi-val-revenue" class="text-2xl font-extrabold text-white mt-1">$1,482,900</h3>
+                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
+                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +14.2% YoY
+                            </span>
+                        </div>
+
+                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
+                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_profit">Net Profit Margin</p>
+                            <h3 id="kpi-val-profit" class="text-2xl font-extrabold text-brand-cyan mt-1">28.4%</h3>
+                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
+                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +3.1% Target
+                            </span>
+                        </div>
+
+                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
+                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_orders">Total Orders</p>
+                            <h3 id="kpi-val-orders" class="text-2xl font-extrabold text-white mt-1">12,450</h3>
+                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
+                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +8.6%
+                            </span>
+                        </div>
+
+                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
+                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_aov">Avg Order Value</p>
+                            <h3 id="kpi-val-aov" class="text-2xl font-extrabold text-brand-purple mt-1">$119.10</h3>
+                            <span class="inline-flex items-center text-xs text-brand-cyan font-semibold mt-2">
+                                <i class="fa-solid fa-check mr-1 rtl:ml-1"></i> Optimal
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        <!-- Revenue Trend Chart -->
+                        <div class="lg:col-span-8 bg-brand-dark/80 border border-brand-border p-5 rounded-2xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-sm font-bold text-gray-200" data-i18n="chart_trend_title">Monthly Revenue Performance vs Forecast</h4>
+                                <span class="text-xs text-gray-400 font-mono">2025 - 2026</span>
+                            </div>
+                            <div class="relative h-64 w-full">
+                                <canvas id="trendChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Category Doughnut Chart -->
+                        <div class="lg:col-span-4 bg-brand-dark/80 border border-brand-border p-5 rounded-2xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-sm font-bold text-gray-200" data-i18n="chart_category_title">Revenue by Product Line</h4>
+                                <i class="fa-solid fa-pie-chart text-brand-cyan"></i>
+                            </div>
+                            <div class="relative h-64 w-full flex items-center justify-center">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-brand-dark/40 border-t border-brand-border/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="projects_subtitle">Featured Deliverables</h2>
+                        <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="projects_title">Dashboard Showcase</p>
+                    </div>
+
+                    <!-- Filter Tags -->
+                    <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
+                        <button onclick="filterProjects('all')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-cyan text-black" data-filter="all">All</button>
+                        <button onclick="filterProjects('powerbi')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="powerbi">Power BI</button>
+                        <button onclick="filterProjects('sql')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="sql">SQL Analytics</button>
+                        <button onclick="filterProjects('finance')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="finance">Financial Dashboards</button>
+                    </div>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="powerbi finance">
+                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
+                            <!-- Visual Graphic Representation -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/40 via-blue-900/20 to-slate-900 flex items-center justify-center p-6">
+                                <div class="w-full h-full border border-cyan-500/20 rounded-xl bg-brand-dark/90 p-4 space-y-3">
+                                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                                        <span class="text-xs font-bold text-cyan-400">Executive Sales & Financial KPI</span>
+                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Rev: $2.4M</div>
+                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Margin: 34%</div>
+                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Growth: +18%</div>
+                                    </div>
+                                    <div class="h-12 bg-cyan-950/30 rounded border border-cyan-800/30 flex items-end p-1 space-x-1">
+                                        <div class="w-1/6 bg-cyan-500 h-1/2 rounded-t"></div>
+                                        <div class="w-1/6 bg-cyan-500 h-3/4 rounded-t"></div>
+                                        <div class="w-1/6 bg-cyan-500 h-2/3 rounded-t"></div>
+                                        <div class="w-1/6 bg-cyan-500 h-full rounded-t"></div>
+                                        <div class="w-1/6 bg-cyan-500 h-4/5 rounded-t"></div>
+                                        <div class="w-1/6 bg-cyan-400 h-full rounded-t animate-pulse"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-cyan-400 border border-cyan-500/30 font-semibold">Power BI + DAX</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p1_title">Executive Global Sales Dashboard</h3>
+                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p1_desc">Comprehensive multi-currency reporting dashboard built for corporate executives, featuring time-intelligence dynamic DAX measures, target variance tracking, and RLS.</p>
+                            </div>
+                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">DAX</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Star Schema</span>
+                                </div>
+                                <button onclick="openProjectModal('p1')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
+                                    <span data-i18n="btn_view_details">Details</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="sql">
+                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/40 via-purple-900/20 to-slate-900 flex items-center justify-center p-6">
+                                <div class="w-full h-full border border-blue-500/20 rounded-xl bg-brand-dark/90 p-4 font-mono text-[11px] text-blue-300 space-y-1.5 overflow-hidden">
+                                    <p class="text-purple-400">WITH CustomerRetention AS (</p>
+                                    <p class="pl-3">SELECT customer_id, COUNT(order_id) AS total_orders</p>
+                                    <p class="pl-3">FROM sales_fact GROUP BY customer_id</p>
+                                    <p class="text-purple-400">)</p>
+                                    <p class="text-emerald-400">SELECT * FROM CustomerRetention WHERE total_orders &gt; 5;</p>
+                                </div>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-blue-400 border border-blue-500/30 font-semibold">SQL Analytics</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p2_title">Customer Churn & Cohort Analysis</h3>
+                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p2_desc">Advanced SQL analytics pipeline analyzing customer retention cohorts, lifetime value (LTV), purchase frequencies, and predictive churn indicators.</p>
+                            </div>
+                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">T-SQL</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Cohort Analysis</span>
+                                </div>
+                                <button onclick="openProjectModal('p2')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
+                                    <span data-i18n="btn_view_details">Details</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="powerbi">
+                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-cyan-900/20 to-slate-900 flex items-center justify-center p-6">
+                                <div class="w-full h-full border border-purple-500/20 rounded-xl bg-brand-dark/90 p-4 space-y-2">
+                                    <div class="flex justify-between items-center text-xs text-purple-300 border-b border-gray-800 pb-2">
+                                        <span>Supply Chain & Inventory Tracker</span>
+                                        <i class="fa-solid fa-truck"></i>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 text-[10px] text-gray-300">
+                                        <div class="bg-gray-800/80 p-2 rounded">Stock Turnover: 8.4x</div>
+                                        <div class="bg-gray-800/80 p-2 rounded">Out-of-Stock: 1.2%</div>
+                                    </div>
+                                    <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-3">
+                                        <div class="bg-purple-500 h-full w-4/5"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-purple-400 border border-purple-500/30 font-semibold">Supply Chain</span>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p3_title">Supply Chain & Warehouse Optimization</h3>
+                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p3_desc">Interactive inventory dashboard optimizing safety stock levels, vendor lead times, stockout risks, and order fulfillment throughput.</p>
+                            </div>
+                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+                                <div class="flex gap-1.5 flex-wrap">
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Power BI</span>
+                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Inventory Ops</span>
+                                </div>
+                                <button onclick="openProjectModal('p3')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
+                                    <span data-i18n="btn_view_details">Details</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 bg-brand-dark relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="exp_subtitle">Career Path</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="exp_title">5+ Years Professional Journey</p>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="max-w-4xl mx-auto relative border-l-2 border-brand-border/80 rtl:border-l-0 rtl:border-r-2 space-y-10 pl-6 rtl:pl-0 rtl:pr-6">
+                    
+                    <!-- Item 1 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-cyan ring-4 ring-brand-dark"></div>
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white" data-i18n="job1_role">Senior Data Analyst & Power BI Lead</h3>
+                                    <p class="text-brand-cyan text-sm font-medium">Enterprise Data Solutions</p>
+                                </div>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2022 - Present</span>
+                            </div>
+                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job1_l1">Architected centralized Power BI reporting ecosystems serving over 150+ business stakeholders.</li>
+                                <li data-i18n="job1_l2">Reduced query execution time by 45% through Star Schema modeling and optimized DAX calculations.</li>
+                                <li data-i18n="job1_l3">Implemented Row-Level Security (RLS) policies to safeguard sensitive financial and HR datasets.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-blue ring-4 ring-brand-dark"></div>
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white" data-i18n="job2_role">Data Analyst & BI Specialist</h3>
+                                    <p class="text-brand-blue text-sm font-medium">Commercial Analytics Corp</p>
+                                </div>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2020 - 2022</span>
+                            </div>
+                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job2_l1">Designed end-to-end automated pipelines combining SQL Server, Power Query, and automated Excel reporting.</li>
+                                <li data-i18n="job2_l2">Created predictive sales forecasting models that improved quarterly inventory accuracy by 20%.</li>
+                                <li data-i18n="job2_l3">Trained 30+ team members on Power BI self-service reporting best practices.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-purple ring-4 ring-brand-dark"></div>
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white" data-i18n="job3_role">Junior Business Intelligence Analyst</h3>
+                                    <p class="text-brand-purple text-sm font-medium">Business Insights Consultancy</p>
+                                </div>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2019 - 2020</span>
+                            </div>
+                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job3_l1">Cleaned, transformed, and normalized raw operational data for executive dashboard integration.</li>
+                                <li data-i18n="job3_l2">Developed automated Google Apps Script solutions to streamline daily spreadsheet reporting.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 bg-brand-dark/80 border-t border-brand-border/50 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Info Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="contact_subtitle">Let's Connect</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="contact_title">Ready to Unlock Insights From Your Data?</h2>
+                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n="contact_desc">Looking to build interactive Power BI dashboards, optimize existing DAX queries, or automate reporting workflows? Send a message and let's discuss your project.</p>
+
+                        <!-- Direct Contact List -->
+                        <div class="space-y-4 pt-4">
+                            <a href="mailto:mohamed.amin@example.com" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-brand-cyan transition-colors group">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-brand-cyan flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Email Direct</p>
+                                    <p class="text-sm font-bold text-white">mohamed.amin.data@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://linkedin.com" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-brand-blue transition-colors group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-brand-blue flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">LinkedIn Profile</p>
+                                    <p class="text-sm font-bold text-white">linkedin.com/in/mohamed-amin</p>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-emerald-500 transition-colors group">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">WhatsApp / Call</p>
+                                    <p class="text-sm font-bold text-white">+20 100 000 0000</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-7 bg-brand-card border border-brand-border p-8 rounded-3xl relative">
+                        <form id="portfolio-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_name">Your Name *</label>
+                                    <input type="text" id="form-input-name" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="e.g. Ahmed Ali">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_email">Your Email *</label>
+                                    <input type="email" id="form-input-email" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="e.g. ahmed@company.com">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_subject">Project Type / Subject *</label>
+                                <select id="form-input-subject" class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors">
+                                    <option value="Power BI Dashboard Development">Power BI Dashboard Development</option>
+                                    <option value="SQL Data Analysis & ETL">SQL Data Analysis & ETL</option>
+                                    <option value="DAX Performance Optimization">DAX Performance Optimization</option>
+                                    <option value="Full Data Analytics Consultation">Full Data Analytics Consultation</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_message">Message *</label>
+                                <textarea id="form-input-message" rows="4" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="Describe your data requirements..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center space-x-2 rtl:space-x-reverse">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span data-i18n="btn_send">Send Message</span>
+                            </button>
+                        </form>
+
+                        <!-- Form Feedback Message -->
+                        <div id="form-response-msg" class="hidden mt-4 p-4 rounded-xl text-xs font-semibold text-center"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-dark border-t border-brand-border py-8 text-xs text-gray-500 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© <span id="current-year"></span> Mohamed Amin. All rights reserved.</p>
+            <p data-i18n="footer_tagline">Built for Data Analytics & Power BI Excellence</p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-brand-card border border-brand-border max-w-2xl w-full rounded-3xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeProjectModal()" class="absolute top-5 right-5 rtl:right-auto rtl:left-5 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set dynamic current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Translation Dictionary
+        const translations = {
+            en: {
+                nav_about: "About",
+                nav_skills: "Skills & Tools",
+                nav_demo: "Live Dashboard",
+                nav_projects: "Projects",
+                nav_exp: "Experience",
+                nav_contact: "Contact",
+                hire_me: "Get In Touch",
+                
+                hero_badge: "5+ Years Transforming Business Data",
+                hero_title_prefix: "Hello, I'm",
+                hero_name: "Mohamed Amin",
+                hero_subtitle: "Senior Data Analyst & Power BI Specialist",
+                hero_desc: "Turning complex datasets into intuitive, high-impact business decisions. Expert in Power BI dashboard design, advanced DAX modeling, SQL query optimization, star schema architecture, and automated analytics solutions.",
+                stat_exp: "Years Experience",
+                stat_dashboards: "Dashboards Built",
+                stat_accuracy: "Data Accuracy",
+                btn_projects: "Explore Projects",
+                btn_demo: "Live Analytics Demo",
+                card_status: "● Available for Projects",
+                hero_card_m1: "DAX Performance",
+                hero_card_m2: "Data Security",
+                hero_card_desc: "Designed for high-performance enterprise reporting and seamless cross-filtering.",
+
+                skills_subtitle: "Core Competencies",
+                skills_title: "Technical Mastery & Data Stack",
+                skills_desc: "Over 5 years mastering the full lifecycle of data visualization, modeling, ETL pipeline development, and data governance.",
+                skill_pbi_title: "Power BI & Advanced DAX",
+                skill_pbi_desc: "Building dynamic, interactive dashboards with complex DAX measures, time intelligence, calculation groups, and row-level security (RLS).",
+                skill_model_title: "Data Modeling & Star Schema",
+                skill_model_desc: "Architecting efficient Star and Snowflake schemas, relationship cardinalities, data normalization, and aggregate table optimization.",
+                skill_sql_title: "SQL Queries & Data ETL",
+                skill_sql_desc: "Extracting, transforming, and querying relational databases using CTEs, window functions, complex joins, and stored procedures.",
+                skill_auto_title: "Automation & Python",
+                skill_auto_desc: "Automating repetitive reporting tasks using Google Apps Script, Python scripts (Pandas/Numpy), and scheduled data refreshes.",
+                skill_excel_title: "Advanced Excel & Analytics",
+                skill_excel_desc: "Expert-level spreadsheet modeling using Power Pivot, Power Query, complex formulas, macros, and financial metrics analysis.",
+                skill_bi_title: "Business Intelligence Strategy",
+                skill_bi_desc: "Translating stakeholder requirements into KPIs, building executive summaries, and conducting cohort & trend analysis.",
+
+                demo_badge: "Interactive Component",
+                demo_title: "Embedded Analytics Demo Dashboard",
+                demo_desc: "Test the live filtering functionality below to experience interactive reporting capabilities.",
+                filter_all: "All Regions",
+                filter_north: "North America",
+                filter_emea: "EMEA",
+                filter_apac: "APAC",
+                kpi_revenue: "Total Revenue",
+                kpi_profit: "Net Profit Margin",
+                kpi_orders: "Total Orders",
+                kpi_aov: "Avg Order Value",
+                chart_trend_title: "Monthly Revenue Performance vs Forecast",
+                chart_category_title: "Revenue by Product Line",
+
+                projects_subtitle: "Featured Deliverables",
+                projects_title: "Dashboard Showcase",
+                p1_title: "Executive Global Sales Dashboard",
+                p1_desc: "Comprehensive multi-currency reporting dashboard built for corporate executives, featuring time-intelligence dynamic DAX measures, target variance tracking, and RLS.",
+                p2_title: "Customer Churn & Cohort Analysis",
+                p2_desc: "Advanced SQL analytics pipeline analyzing customer retention cohorts, lifetime value (LTV), purchase frequencies, and predictive churn indicators.",
+                p3_title: "Supply Chain & Warehouse Optimization",
+                p3_desc: "Interactive inventory dashboard optimizing safety stock levels, vendor lead times, stockout risks, and order fulfillment throughput.",
+                btn_view_details: "Details",
+
+                exp_subtitle: "Career Path",
+                exp_title: "5+ Years Professional Journey",
+                job1_role: "Senior Data Analyst & Power BI Lead",
+                job1_l1: "Architected centralized Power BI reporting ecosystems serving over 150+ business stakeholders.",
+                job1_l2: "Reduced query execution time by 45% through Star Schema modeling and optimized DAX calculations.",
+                job1_l3: "Implemented Row-Level Security (RLS) policies to safeguard sensitive financial and HR datasets.",
+                job2_role: "Data Analyst & BI Specialist",
+                job2_l1: "Designed end-to-end automated pipelines combining SQL Server, Power Query, and automated Excel reporting.",
+                job2_l2: "Created predictive sales forecasting models that improved quarterly inventory accuracy by 20%.",
+                job2_l3: "Trained 30+ team members on Power BI self-service reporting best practices.",
+                job3_role: "Junior Business Intelligence Analyst",
+                job3_l1: "Cleaned, transformed, and normalized raw operational data for executive dashboard integration.",
+                job3_l2: "Developed automated Google Apps Script solutions to streamline daily spreadsheet reporting.",
+
+                contact_subtitle: "Let's Connect",
+                contact_title: "Ready to Unlock Insights From Your Data?",
+                contact_desc: "Looking to build interactive Power BI dashboards, optimize existing DAX queries, or automate reporting workflows? Send a message and let's discuss your project.",
+                form_name: "Your Name *",
+                form_email: "Your Email *",
+                form_subject: "Project Type / Subject *",
+                form_message: "Message *",
+                btn_send: "Send Message",
+                footer_tagline: "Built for Data Analytics & Power BI Excellence"
+            },
+            ar: {
+                nav_about: "نبذة عني",
+                nav_skills: "المهارات والأدوات",
+                nav_demo: "لوحة تفاعلية live",
+                nav_projects: "المشاريع",
+                nav_exp: "الخبرات العملية",
+                nav_contact: "تواصل معي",
+                hire_me: "تواصل معي",
+
+                hero_badge: "خبرة +5 سنوات في تحويل البيانات إلى قرارات",
+                hero_title_prefix: "مرحباً، أنا",
+                hero_name: "محمد أمين",
+                hero_subtitle: "محلل بيانات ومطور باور بي اي (Power BI Specialist)",
+                hero_desc: "متخصص في تحويل البيانات المعقدة إلى لوحات تحكم تفاعلية وسهلة الاستخدام لاتخاذ قرارات استراتيجية. خبرة متقدمة في بناء نماذج البيانات (Star Schema)، كتابة معادلات DAX المعقدة، تحسين استعلامات SQL، وأتمتة التقارير.",
+                stat_exp: "سنوات خبرة",
+                stat_dashboards: "لوحة تحكم مصممة",
+                stat_accuracy: "دقة البيانات",
+                btn_projects: "استعرض المشاريع",
+                btn_demo: "التجربة التفاعلية Live",
+                card_status: "● متاح للمشاريع والتعاقد",
+                hero_card_m1: "أداء معادلات DAX",
+                hero_card_m2: "أمان البيانات RLS",
+                hero_card_desc: "مصمم لتوفير أقصى سرعة في استخراج التقارير والفلترة المتقاطعة.",
+
+                skills_subtitle: "الخبرات المتقدمة",
+                skills_title: "المهارات الفنية وحزمة الأدوات",
+                skills_desc: "أكثر من 5 سنوات في إدارة دورة حياة تحليل البيانات بالكامل: من الربط والتنظيف إلى النمذجة والعرض التفاعلي.",
+                skill_pbi_title: "Power BI ومعادلات DAX المتقدمة",
+                skill_pbi_desc: "تصميم لوحات تحكم ديناميكية باستخدام قياسات DAX المعقدة، التحليل الزمني، مجموعات الحساب، وصلاحيات الوصول RLS.",
+                skill_model_title: "نمذجة البيانات (Star Schema)",
+                skill_model_desc: "بناء هيكلية Star & Snowflake Schema عالية الأداء، ضبط علاقات الجداول، والحد من تكرار البيانات.",
+                skill_sql_title: "استعلامات SQL ومعالجة البيانات",
+                skill_sql_desc: "استخراج وتنظيف البيانات من القواعد 관계ية باستخدام CTEs، window functions، والربط المعقد.",
+                skill_auto_title: "الأتمتة و بايثون (Python)",
+                skill_auto_desc: "أتمتة المهام المكررة والتقارير باستخدام Google Apps Script وسكريبتات Python (Pandas/Numpy).",
+                skill_excel_title: "إكسيل المتقدم والتحليل المالي",
+                skill_excel_desc: "نمذجة البيانات المعقدة باستخدام Power Pivot و Power Query والمعادلات المتقدمة وتحليل الانحرافات.",
+                skill_bi_title: "استراتيجية ذكاء الأعمال (BI)",
+                skill_bi_desc: "تحويل متطلبات العمل إلى مؤشرات أداء رئيسية (KPIs) وإعداد ملخصات تنفيذية وتحليل سلوك العملاء.",
+
+                demo_badge: "مكون تفاعلي حي",
+                demo_title: "لوحة تحكم تفاعلية مدمجة (Interactive Demo)",
+                demo_desc: "يمكنك تجربة فلترة البيانات حياً من خلال الأزرار التالية لملاحظة التغير المباشر في المؤشرات والرسم البياني.",
+                filter_all: "جميع المناطق",
+                filter_north: "أمريكا الشمالية",
+                filter_emea: "أوروبا والشرق الأوسط",
+                filter_apac: "آسيا والمحيط الهادئ",
+                kpi_revenue: "إجمالي الإيرادات",
+                kpi_profit: "هامش الربح الصافي",
+                kpi_orders: "إجمالي الطلبات",
+                kpi_aov: "متوسط قيمة الطلب",
+                chart_trend_title: "أداء الإيرادات الشهري مقارنة بالمتوقع",
+                chart_category_title: "الإيرادات حسب خط الإنتاج",
+
+                projects_subtitle: "معرض الأعمال",
+                projects_title: "أبرز مشاريع لوحات التحكم",
+                p1_title: "لوحة المبيعات والمالية التنفيذية العالمية",
+                p1_desc: "لوحة تقارير متعددة العملات للمدراء التنفيذيين، تعتمد على معادلات DAX للتحليل الزمني وتتبع الانحراف عن الأهداف.",
+                p2_title: "تحليل معدل فقدان العملاء (SQL Cohort Analysis)",
+                p2_desc: "مشروع تحليل بيانات متقدم بـ SQL لدراسة سلوك العملاء، القيمة الممتدة (LTV)، ومعدلات الاحتفاظ بالعملاء.",
+                p3_title: "لوحة إدارة سلاسل الإمداد والمخازن",
+                p3_desc: "لوحة تفاعلية لمراقبة المخزون، تقليل مخاطر نفاد البضائع، وتحسين أوقات التوريد وكفاءة الشحن.",
+                btn_view_details: "التفاصيل",
+
+                exp_subtitle: "المسار المهني",
+                exp_title: "خبرة عمل تتجاوز 5 سنوات",
+                job1_role: "كبير محللي البيانات ومطور Power BI الرئيسي",
+                job1_l1: "تصميم وتنفيذ منظومة تقارير Power BI مركزية تخدم أكثر من 150 مستخدم وقيادي.",
+                job1_l2: "تسريع زمن استجابة الاستعلامات بنسبة 45% عبر إعادة نمذجة البيانات وتطبيق Star Schema.",
+                job1_l3: "تطبيق سياسات حماية البيانات RLS لتأمين التقارير المالية والحساسة.",
+                job2_role: "محلل بيانات وأخصائي ذكاء الأعمال",
+                job2_l1: "بناء خطوط معالجة أوتوماتيكية تعتمد على SQL Server و Power Query والتقارير المباشرة.",
+                job2_l2: "إنشاء نماذج تنبؤ بالمبيعات ساهمت في تحسين دقة إدارة المخزون بنسبة 20%.",
+                job2_l3: "تدريب أكثر من 30 موظفاً على استخدام Power BI للتقارير الذاتية.",
+                job3_role: "محلل ذكاء أعمال (BI Analyst)",
+                job3_l1: "تنظيف وتهيئة البيانات التشغيلية وتحويلها إلى لوحات تقارير جانبية للمدراء.",
+                job3_l2: "تطوير حلول أتمتة عبر Google Apps Script لتسريع إعداد التقارير اليومية.",
+
+                contact_subtitle: "تواصل معي",
+                contact_title: "هل أنت جاهز لتحويل بياناتك إلى رؤى قيّمة؟",
+                contact_desc: "هل تبحث عن تصميم لوحات Power BI تفاعلية، أو تحسين أداء معادلات DAX، أو أتمتة تقاريرك؟ أرسل رسالتك وسأكون سعيداً بمناقشة مشروعك.",
+                form_name: "الاسم الكريم *",
+                form_email: "البريد الإلكتروني *",
+                form_subject: "نوع المشروع / الموضوع *",
+                form_message: "تفاصيل المشروع *",
+                btn_send: "إرسال الرسالة",
+                footer_tagline: "تصميم مخصص لتحليل البيانات وذكريات التميز في Power BI"
+            }
+        };
+
+        let currentLang = 'en';
+
+        // Toggle Language Function
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            // Toggle HTML dir & lang attributes
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+
+            // Change button UI
+            document.getElementById('lang-text').textContent = currentLang === 'en' ? 'العربية' : 'English';
+
+            // Switch Font Family Class
+            if (currentLang === 'ar') {
+                document.body.classList.add('font-ar');
+                document.body.classList.remove('font-en');
+            } else {
+                document.body.classList.add('font-en');
+                document.body.classList.remove('font-ar');
+            }
+
+            // Apply translations
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.textContent = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Projects Filter
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const btns = document.querySelectorAll('.project-filter-btn');
+
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-brand-cyan', 'text-black');
+                    btn.classList.remove('text-gray-400', 'bg-brand-card');
+                } else {
+                    btn.classList.remove('bg-brand-cyan', 'text-black');
+                    btn.classList.add('text-gray-400', 'bg-brand-card');
+                }
+            });
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        const demoData = {
+            all: {
+                revenue: '$1,482,900', profit: '28.4%', orders: '12,450', aov: '$119.10',
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                values: [120000, 145000, 160000, 180000, 210000, 205000, 230000, 232900],
+                categories: [40, 30, 20, 10]
+            },
+            north: {
+                revenue: '$680,000', profit: '31.2%', orders: '5,200', aov: '$130.70',
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                values: [60000, 72000, 80000, 95000, 105000, 98000, 110000, 110000],
+                categories: [50, 25, 15, 10]
+            },
+            emea: {
+                revenue: '$520,000', profit: '26.8%', orders: '4,800', aov: '$108.30',
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                values: [40000, 48000, 55000, 60000, 70000, 72000, 85000, 90000],
+                categories: [30, 35, 25, 10]
+            },
+            apac: {
+                revenue: '$282,900', profit: '24.1%', orders: '2,450', aov: '$115.40',
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                values: [20000, 25000, 25000, 25000, 35000, 35000, 35000, 32900],
+                categories: [35, 30, 20, 15]
+            }
+        };
+
+        let trendChartObj, categoryChartObj;
+
+        function initCharts() {
+            const ctx1 = document.getElementById('trendChart').getContext('2d');
+            const ctx2 = document.getElementById('categoryChart').getContext('2d');
+
+            trendChartObj = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: demoData.all.labels,
+                    datasets: [{
+                        label: 'Revenue ($)',
+                        data: demoData.all.values,
+                        borderColor: '#06B6D4',
+                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3,
+                        pointBackgroundColor: '#00F2FE'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { grid: { color: '#1F2937' }, ticks: { color: '#9CA3AF' } },
+                        y: { grid: { color: '#1F2937' }, ticks: { color: '#9CA3AF' } }
+                    }
+                }
+            });
+
+            categoryChartObj = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Software', 'Hardware', 'Services', 'Consulting'],
+                    datasets: [{
+                        data: demoData.all.categories,
+                        backgroundColor: ['#06B6D4', '#3B82F6', '#8B5CF6', '#10B981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#9CA3AF', font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function updateDemoChart(region) {
+            const data = demoData[region];
+            
+            // Update KPI text values
+            document.getElementById('kpi-val-revenue').textContent = data.revenue;
+            document.getElementById('kpi-val-profit').textContent = data.profit;
+            document.getElementById('kpi-val-orders').textContent = data.orders;
+            document.getElementById('kpi-val-aov').textContent = data.aov;
+
+            // Update Chart datasets
+            trendChartObj.data.datasets[0].data = data.values;
+            trendChartObj.update();
+
+            categoryChartObj.data.datasets[0].data = data.categories;
+            categoryChartObj.update();
+
+            // Highlight Active Button
+            document.querySelectorAll('.filter-demo-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-cyan', 'text-black', 'font-bold');
+                btn.classList.add('text-gray-400', 'font-medium');
+            });
+
+            const activeBtn = document.getElementById(`btn-filter-${region}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-brand-cyan', 'text-black', 'font-bold');
+                activeBtn.classList.remove('text-gray-400', 'font-medium');
+            }
+        }
+
+        const projectModalData = {
+            p1: {
+                title: "Executive Global Sales Dashboard",
+                tech: "Power BI, DAX, Star Schema, Dynamic RLS",
+                summary: "Designed an enterprise-grade executive report consolidating data from 4 distinct regions. Developed custom DAX time intelligence functions for Year-Over-Year variance calculations and dynamic currency conversion."
+            },
+            p2: {
+                title: "Customer Churn & Cohort Analysis",
+                titleAr: "تحليل معدل فقدان العملاء",
+                tech: "SQL Server, PostgreSQL, Power Query, CTEs",
+                summary: "Created complex SQL queries using Common Table Expressions (CTEs) and Window Functions to group customers by acquisition cohorts, calculating rolling retention rates and lifetime values."
+            },
+            p3: {
+                title: "Supply Chain & Warehouse Optimization",
+                tech: "Power BI, Python (Pandas), Excel, Power Query",
+                summary: "Constructed an automated operational inventory tracker that monitors safety stock levels, safety buffer thresholds, lead times, and alerts supply chain managers before stockouts occur."
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+            const item = projectModalData[projectId];
+
+            content.innerHTML = `
+                <div class="space-y-4">
+                    <span class="text-xs font-bold text-brand-cyan uppercase tracking-widest">${item.tech}</span>
+                    <h3 class="text-2xl font-bold text-white">${item.title}</h3>
+                    <div class="p-4 bg-brand-dark rounded-xl border border-brand-border text-sm text-gray-300 leading-relaxed">
+                        ${item.summary}
+                    </div>
+                    <div class="pt-4 border-t border-brand-border flex justify-end">
+                        <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-brand-cyan text-black font-bold text-xs">Close Preview</button>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Contact Form Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const msgBox = document.getElementById('form-response-msg');
+            msgBox.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+            msgBox.classList.add('bg-emerald-500/20', 'text-emerald-400');
+            msgBox.textContent = currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح! سيتواصل معك محمد أمين قريباً.' : 'Message sent successfully! Mohamed Amin will get back to you shortly.';
+            
+            document.getElementById('portfolio-contact-form').reset();
+            
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        window.onload = function() {
+            initCharts();
+        };
+    </script>
+</body>
+</html>
