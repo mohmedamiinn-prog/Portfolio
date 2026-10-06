@@ -4,45 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed Amin | Data Analyst & Power BI Developer</title>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
+        /* CSS Variables for Light & Dark Theme */
         :root[data-theme="dark"] {
-            --bg-primary: #0b0f19;
-            --bg-secondary: #111827;
-            --bg-card: #1f2937;
-            --bg-card-hover: #374151;
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
+            --bg-body: #0b0f17;
+            --bg-surface: #151c28;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             --accent: #38bdf8;
             --accent-hover: #0284c7;
-            --accent-glow: rgba(56, 189, 248, 0.25);
-            --border: #374151;
-            --shadow: rgba(0, 0, 0, 0.5);
-            --kpi-bg: #111827;
-            --tag-bg: #1e293b;
+            --border: #334155;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --pill-bg: #0f172a;
         }
 
         :root[data-theme="light"] {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
             --bg-card: #ffffff;
-            --bg-card-hover: #f1f5f9;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
             --accent: #0284c7;
             --accent-hover: #0369a1;
-            --accent-glow: rgba(2, 132, 199, 0.15);
             --border: #e2e8f0;
-            --shadow: rgba(0, 0, 0, 0.06);
-            --kpi-bg: #f1f5f9;
-            --tag-bg: #e2e8f0;
+            --shadow: rgba(0, 0, 0, 0.05);
+            --pill-bg: #f1f5f9;
         }
 
         * {
@@ -50,59 +49,55 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
 
         body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Fix Phone Number BIDI issue in RTL */
-        .phone-number {
+        /* Fix Phone Number Order in RTL */
+        .phone-num {
             direction: ltr !important;
             unicode-bidi: isolate !important;
             display: inline-block;
         }
 
-        /* Navigation */
+        /* Navigation Header */
         header {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            background-color: rgba(17, 24, 39, 0.85);
-            backdrop-filter: blur(12px);
+            z-index: 100;
+            background-color: var(--bg-surface);
             border-bottom: 1px solid var(--border);
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        :root[data-theme="light"] header {
-            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 4px 12px var(--shadow);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--accent);
+            text-decoration: none;
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            text-decoration: none;
         }
 
         nav {
             display: flex;
+            gap: 1.5rem;
             align-items: center;
-            gap: 1.8rem;
         }
 
         nav a {
-            color: var(--text-primary);
+            color: var(--text-main);
             text-decoration: none;
             font-weight: 600;
             font-size: 0.95rem;
@@ -112,83 +107,90 @@
             color: var(--accent);
         }
 
-        .controls {
+        .nav-controls {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.6rem;
         }
 
         .btn-control {
-            background: var(--bg-card);
-            color: var(--text-primary);
+            background: var(--bg-body);
+            color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 0.55rem 1rem;
-            border-radius: 10px;
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 700;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
+            gap: 0.4rem;
         }
 
         .btn-control:hover {
             border-color: var(--accent);
             color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Scroll Animations (Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
         .hero {
-            padding: 5rem 2rem;
-            max-width: 1250px;
+            padding: 4.5rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
-            gap: 3rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .hero-text h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             line-height: 1.2;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .hero-text h2 {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             color: var(--accent);
+            margin-bottom: 1.2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
         }
 
         .hero-text p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1.15rem;
-            max-width: 650px;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            font-size: 1.05rem;
         }
 
-        .hero-btns {
+        .hero-actions {
             display: flex;
-            flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
         }
 
         .btn-primary {
             background-color: var(--accent);
             color: #ffffff;
-            padding: 0.85rem 1.8rem;
-            border-radius: 10px;
+            padding: 0.75rem 1.6rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
-            border: none;
-            cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
-            box-shadow: 0 4px 14px var(--accent-glow);
+            gap: 0.5rem;
         }
 
         .btn-primary:hover {
@@ -196,924 +198,561 @@
             transform: translateY(-2px);
         }
 
-        .btn-outline {
-            border: 2px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.85rem 1.8rem;
-            border-radius: 10px;
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.6rem;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
             display: inline-flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
         }
 
-        .btn-outline:hover {
+        .btn-secondary:hover {
             border-color: var(--accent);
             color: var(--accent);
             transform: translateY(-2px);
         }
 
-        .contact-info-pills {
+        .info-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.8rem;
+            gap: 0.7rem;
         }
 
         .pill {
-            background: var(--bg-card);
+            background: var(--pill-bg);
             border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
+            gap: 0.4rem;
         }
 
-        .hero-card {
-            background: var(--bg-card);
+        .hero-stats-card {
+            background: var(--bg-surface);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 20px 25px -5px var(--shadow);
-            position: relative;
-            overflow: hidden;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px var(--shadow);
         }
 
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), #10b981);
-        }
-
-        .stat-grid {
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        .stat-item {
-            text-align: center;
+        .stat-box {
+            background: var(--bg-body);
             padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid var(--border);
+            text-align: center;
         }
 
         .stat-num {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: var(--accent);
         }
 
-        .stat-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+        .stat-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
         }
 
-        /* Section Global */
+        /* Global Section */
         section {
-            padding: 5rem 2rem;
-            max-width: 1250px;
+            padding: 4rem 2rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             position: relative;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 70px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: var(--accent);
-            margin: 0.6rem auto 0;
+            margin: 0.5rem auto 0;
             border-radius: 2px;
         }
 
-        /* Interactive Dashboard */
-        .dashboard-container {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 15px 30px var(--shadow);
-        }
-
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .kpi-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .kpi-card {
-            background: var(--kpi-bg);
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 14px;
-            text-align: center;
-        }
-
-        .kpi-card h4 {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .kpi-card .value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .charts-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-        }
-
-        /* Portfolio / Showcase Tabs */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            padding: 0.6rem 1.4rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--accent);
-            color: #ffffff;
-            border-color: var(--accent);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
+        /* Dashboard Section */
+        .dashboard-box {
+            background: var(--bg-surface);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.8rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 10px 25px var(--shadow);
         }
 
-        .project-card:hover {
+        .chart-container {
+            margin-top: 1.5rem;
+            position: relative;
+            max-height: 380px;
+        }
+
+        /* Cards & Timeline */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .card:hover {
             border-color: var(--accent);
             transform: translateY(-4px);
         }
 
-        .project-card h3 {
-            color: var(--accent);
-            font-size: 1.25rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .project-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            background: var(--tag-bg);
-            color: var(--accent);
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
-        }
-
-        /* Experience Timeline */
-        .timeline {
-            position: relative;
-            border-inline-start: 3px solid var(--accent);
-            padding-inline-start: 2rem;
-            margin-inline-start: 1rem;
-        }
-
-        .timeline-item {
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            inline-start: -2.65rem;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 20px var(--shadow);
-        }
-
         .card h3 {
-            font-size: 1.35rem;
             color: var(--accent);
-            margin-bottom: 0.3rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
         }
 
         .card .subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 1rem;
             font-weight: 600;
-            margin-bottom: 1.2rem;
         }
 
         .card ul {
             padding-inline-start: 1.2rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
         }
 
         .card ul li {
-            margin-bottom: 0.6rem;
-            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
         }
 
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .skill-category h3 {
-            margin-bottom: 1.2rem;
-            color: var(--accent);
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .skill-tags {
+        /* Skills Tags */
+        .tags-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
         }
 
-        .skill-tag {
-            background: var(--bg-primary);
+        .tag-pill {
+            background: var(--bg-body);
             border: 1px solid var(--border);
-            padding: 0.5rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.88rem;
             font-weight: 600;
-        }
-
-        /* Education & Certs */
-        .edu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Contact Section */
-        .contact-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .contact-btns {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            background: var(--bg-surface);
             border-top: 1px solid var(--border);
             text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
+            padding: 1.8rem;
+            color: var(--text-muted);
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
             .hero { grid-template-columns: 1fr; }
-            .charts-grid { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 2.3rem; }
+            nav { display: none; } /* Simplified for mobile view */
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Header -->
+    <!-- Header Navigation -->
     <header>
         <a href="#" class="logo">
-            <i class="fa-solid fa-chart-pie"></i> Mohamed Amin
+            <i class="fa-solid fa-chart-simple"></i> Mohamed Amin
         </a>
         <nav>
             <a href="#about" data-i18n="nav_about">عني</a>
-            <a href="#dashboard" data-i18n="nav_dashboard">لوحة البيانات</a>
-            <a href="#projects" data-i18n="nav_projects">المشاريع</a>
+            <a href="#dashboard" data-i18n="nav_dashboard">الداشبورد</a>
             <a href="#experience" data-i18n="nav_experience">الخبرات</a>
             <a href="#skills" data-i18n="nav_skills">المهارات</a>
             <a href="#education" data-i18n="nav_education">التعليم</a>
         </nav>
-        <div class="controls">
-            <button class="btn-control" id="theme-toggle">
-                <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark</span>
+        <div class="nav-controls">
+            <button class="btn-control" id="theme-btn">
+                <i class="fa-solid fa-moon" id="theme-icon"></i>
+                <span id="theme-label">Light</span>
             </button>
-            <button class="btn-control" id="lang-toggle">
-                <i class="fa-solid fa-globe"></i> <span id="lang-text">English</span>
+            <button class="btn-control" id="lang-btn">
+                <i class="fa-solid fa-globe"></i>
+                <span id="lang-label">English</span>
             </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="about">
+    <section class="hero reveal" id="about">
         <div class="hero-text">
-            <h1 data-i18n="hero_title">محمد أمين</h1>
-            <h2 data-i18n="hero_subtitle">Data Analyst & Power BI Developer</h2>
+            <h1 data-i18n="hero_name">محمد أمين</h1>
+            <h2 data-i18n="hero_title">Data Analyst & Power BI Developer</h2>
             <p data-i18n="hero_desc">
-                محلل بيانات ومطور Power BI بخبرة تتجاوز 5 سنوات في تحويل البيانات المعقدة إلى لوحات تحكم تفاعلية وقرارات استراتيجية. أتميز ببناء نماذج بيانات متقدمة (Star Schema)، كتابة استعلامات SQL عالية الكفاءة، وأتمتة التقارير المالية والتشغيلية في الرياض، المملكة العربية السعودية.
+                محلل بيانات ومطور Power BI بخبرة أرقام تتجاوز 5 سنوات في تحويل البيانات المعقدة إلى رؤى استراتيجية. متقدم في بناء نماذج البيانات Star Schema، كتابة استعلامات SQL عالية الكفاءة، وأتمتة التقارير المالية والتشغيلية بالرياض.
             </p>
-            <div class="hero-btns">
+            <div class="hero-actions">
                 <a href="https://wa.me/966565490074" target="_blank" class="btn-primary">
-                    <i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_whatsapp">واتساب مباشر</span>
+                    <i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_whatsapp">تواصل عبر الواتساب</span>
                 </a>
-                <a href="mailto:mohmedamiinn@gmail.com" class="btn-outline">
-                    <i class="fa-solid fa-envelope"></i> <span data-i18n="btn_contact">تواصل إلكتروني</span>
+                <a href="mailto:mohmedamiinn@gmail.com" class="btn-secondary">
+                    <i class="fa-solid fa-envelope"></i> <span data-i18n="btn_email">البريد الإلكتروني</span>
                 </a>
             </div>
-            <div class="contact-info-pills">
+            <div class="info-pills">
                 <span class="pill"><i class="fa-solid fa-location-dot"></i> <span data-i18n="loc">الرياض، المملكة العربية السعودية</span></span>
-                <span class="pill"><i class="fa-solid fa-phone"></i> <span class="phone-number" dir="ltr">+966 56 549 0074</span></span>
+                <span class="pill"><i class="fa-solid fa-phone"></i> <span class="phone-num">+966 56 549 0074</span></span>
                 <span class="pill"><i class="fa-solid fa-envelope"></i> mohmedamiinn@gmail.com</span>
             </div>
         </div>
-        <div class="hero-card">
-            <h3 style="color: var(--accent); font-size: 1.4rem; margin-bottom: 0.5rem;" data-i18n="hero_card_title">الخبرات والأرقام الرئيسية</h3>
-            <p style="color: var(--text-secondary); font-size: 0.95rem;" data-i18n="hero_card_desc">أرقام وإنجازات تعكس جودة ودقة التحليلات المقدمة للشركات:</p>
-            <div class="stat-grid">
-                <div class="stat-item">
+        <div class="hero-stats-card">
+            <h3 style="color: var(--accent); font-size: 1.2rem;" data-i18n="stats_title">ملخص الإنجازات</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;" data-i18n="stats_sub">مؤشرات أداء تعكس جودة وكفاءة العمل:</p>
+            <div class="stats-grid">
+                <div class="stat-box">
                     <div class="stat-num">5+</div>
-                    <div class="stat-desc" data-i18n="stat_exp">سنوات خبرة</div>
+                    <div class="stat-label" data-i18n="stat_exp">سنوات خبرة</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-box">
                     <div class="stat-num">30%</div>
-                    <div class="stat-desc" data-i18n="stat_time">تقليل وقت التقارير</div>
+                    <div class="stat-label" data-i18n="stat_effort">تقليل الجهد اليدوي</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-box">
                     <div class="stat-num">100+</div>
-                    <div class="stat-desc" data-i18n="stat_reports">تقرير وداشبورد</div>
+                    <div class="stat-label" data-i18n="stat_dashboards">لوحة تحكم وتقارير</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-box">
                     <div class="stat-num">99.8%</div>
-                    <div class="stat-desc" data-i18n="stat_accuracy">دقة تنقية البيانات</div>
+                    <div class="stat-label" data-i18n="stat_accuracy">دقة وتنقية البيانات</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Interactive Dashboard Section -->
-    <section id="dashboard">
-        <h2 class="section-title" data-i18n="title_dashboard">لوحة بيانات تفاعلية (نموذج حي)</h2>
-        <div class="dashboard-container">
-            <div class="dashboard-header">
+    <section class="reveal" id="dashboard">
+        <h2 class="section-title" data-i18n="title_dashboard">لوحة بيانات تفاعلية حية</h2>
+        <div class="dashboard-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                 <div>
-                    <h3 data-i18n="dash_overview" style="font-size: 1.3rem;">مؤشرات الأداء وتحليل أثر الأتمتة</h3>
-                    <p style="color: var(--text-secondary); font-size: 0.95rem;" data-i18n="dash_sub">نموذج تفاعلي يوضح توزيع الجهد وكفاءة معالجة البيانات حسب المصادر</p>
-                </div>
-                <div>
-                    <select id="region-filter" class="btn-control" style="font-size: 0.95rem; padding: 0.6rem 1.2rem;">
-                        <option value="all" data-i18n="filter_all">جميع المشاريع</option>
-                        <option value="ksa" data-i18n="filter_ksa">المملكة العربية السعودية (Fair Value)</option>
-                        <option value="egypt" data-i18n="filter_egypt">جمهورية مصر العربية (مؤسسة الإيمان & رنين)</option>
-                    </select>
+                    <h3 data-i18n="chart_title" style="font-size: 1.2rem;">توزيع كفاءة وأثر أتمتة التقارير</h3>
+                    <p data-i18n="chart_sub" style="color: var(--text-muted); font-size: 0.88rem;">مقياس الأداء حسب التقنيات المستخدمة</p>
                 </div>
             </div>
-
-            <div class="kpi-grid">
-                <div class="kpi-card">
-                    <h4 data-i18n="kpi_exp">الخبرة العملية</h4>
-                    <div class="value">5+ <span style="font-size:1rem;">سنوات</span></div>
-                </div>
-                <div class="kpi-card">
-                    <h4 data-i18n="kpi_time">تقليل الجهد اليدوي</h4>
-                    <div class="value">30%</div>
-                </div>
-                <div class="kpi-card">
-                    <h4 data-i18n="kpi_tools">أدوات رئيسية</h4>
-                    <div class="value">7+ <span style="font-size:1rem;">أدوات</span></div>
-                </div>
-                <div class="kpi-card">
-                    <h4 data-i18n="kpi_accuracy">دقة التحليل والنمذجة</h4>
-                    <div class="value">99.8%</div>
-                </div>
-            </div>
-
-            <div class="charts-grid">
-                <div style="background: var(--kpi-bg); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border);">
-                    <canvas id="mainChart"></canvas>
-                </div>
-                <div style="background: var(--kpi-bg); padding: 1.2rem; border-radius: 12px; border: 1px solid var(--border);">
-                    <canvas id="pieChart"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title" data-i18n="title_projects">معرض المشاريع والحلول</h2>
-        
-        <div class="filter-tabs">
-            <button class="tab-btn active" onclick="filterProjects('all')" data-i18n="tab_all">الكل</button>
-            <button class="tab-btn" onclick="filterProjects('powerbi')" data-i18n="tab_pbi">Power BI & DAX</button>
-            <button class="tab-btn" onclick="filterProjects('sql')" data-i18n="tab_sql">SQL & Modeling</button>
-            <button class="tab-btn" onclick="filterProjects('financial')" data-i18n="tab_fin">التحليل المالي</button>
-        </div>
-
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card" data-category="powerbi financial">
-                <div>
-                    <h3 data-i18n="p1_title">لوحة قياس الأداء المالي والتقييم الاستثماري</h3>
-                    <p data-i18n="p1_desc">تصميم داشبورد Power BI متكامل لربط القوائم المالية، أتمتة حساب النسب المالية، ودراسات الجدوى المالية مع تقليل زمن إعداد التقارير بنسبة 30%.</p>
-                </div>
-                <div>
-                    <div class="tags">
-                        <span class="tag">Power BI</span>
-                        <span class="tag">DAX</span>
-                        <span class="tag">Financial Modeling</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card" data-category="sql powerbi">
-                <div>
-                    <h3 data-i18n="p2_title">نموذج بيانات المبيعات الموحد (Star Schema)</h3>
-                    <p data-i18n="p2_desc">بناء نموذج بيانات متقدم باستخدام SQL و Power Query لدمج بيانات المبيعات من مصادر متعددة وتحديد اتجاهات العملاء وعائد الاستثمار (ROI).</p>
-                </div>
-                <div>
-                    <div class="tags">
-                        <span class="tag">SQL Queries</span>
-                        <span class="tag">Star Schema</span>
-                        <span class="tag">ETL Optimization</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card" data-category="financial powerbi">
-                <div>
-                    <h3 data-i18n="p3_title">أتمتة التقارير التشغيلية المتقدمة</h3>
-                    <p data-i18n="p3_desc">تطوير نظام تقارير آلي بين Excel و Power BI لمتابعة مؤشرات الأداء الرئيسية (KPIs) اليومية والأسبوعية للقيادة التنفيذية.</p>
-                </div>
-                <div>
-                    <div class="tags">
-                        <span class="tag">Advanced Excel</span>
-                        <span class="tag">Power Query</span>
-                        <span class="tag">KPI Automation</span>
-                    </div>
-                </div>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience">
+    <section class="reveal" id="experience">
         <h2 class="section-title" data-i18n="title_experience">الخبرات العملية</h2>
-        <div class="timeline">
+        <div class="cards-grid">
             <!-- Fair Value -->
-            <div class="timeline-item">
-                <div class="card">
-                    <h3 data-i18n="exp1_role">Data Analyst & Power BI Developer</h3>
-                    <div class="subtitle">Fair Value (شركة القيمة العادلة) | <span data-i18n="exp1_loc">الرياض / الدمام، السعودية</span> (Mar 2024 - <span data-i18n="present">الحالي</span>)</div>
-                    <ul>
-                        <li data-i18n="exp1_1">تصميم وتطوير لوحات تحكم تفاعلية وتقارير Power BI احترافية تحول البيانات المعقدة إلى رؤى واضحة لدعم اتخاذ القرار.</li>
-                        <li data-i18n="exp1_2">بناء وصيانة نماذج بيانات قوية باستخدام Power Query و DAX، مما أدى إلى تبسيط معالجة البيانات وتقليل الجهد اليدوي للتقارير بنسبة 30%.</li>
-                        <li data-i18n="exp1_3">كتابة وتحسين استعلامات SQL لاستخراج وتنظيف وتحليل كميات ضخمة من البيانات الممتدة عبر مصادر متعددة.</li>
-                        <li data-i18n="exp1_4">إجراء التحليلات المالية والاستثمارية لدعم تقييم الشركات ودراسات الجدوى بدقة عالية.</li>
-                        <li data-i18n="exp1_5">أتمتة التقارير وسير العمل بين Excel و Power BI لزيادة سرعة ودقة التقارير لجميع الإدارات.</li>
-                    </ul>
-                </div>
+            <div class="card">
+                <h3 data-i18n="exp1_role">Data Analyst & Power BI Developer</h3>
+                <div class="subtitle">Fair Value | <span data-i18n="exp1_loc">الرياض / الدمام، السعودية</span> (2024 - <span data-i18n="present">الحالي</span>)</div>
+                <ul>
+                    <li data-i18n="exp1_1">تصميم وتطوير لوحات تحكم تفاعلية في Power BI تحول البيانات المعقدة إلى رؤى واضحة.</li>
+                    <li data-i18n="exp1_2">بناء نماذج بيانات متقدمة بـ Power Query و DAX مما قلل وقت التقارير اليدوية بنسبة 30%.</li>
+                    <li data-i18n="exp1_3">كتابة استعلامات SQL محسنة لاستخراج وتحليل البيانات المالية والاستثمارية ودراسات الجدوى.</li>
+                </ul>
             </div>
 
             <!-- Al-Eman Foundation -->
-            <div class="timeline-item">
-                <div class="card">
-                    <h3 data-i18n="exp2_role">Sales Analyst</h3>
-                    <div class="subtitle">Al-Eman Foundation | <span data-i18n="exp2_loc">الشرقية، مصر</span> (Jan 2023 - Dec 2023)</div>
-                    <ul>
-                        <li data-i18n="exp2_1">تحليل بيانات المبيعات والعمليات لتحديد الاتجاهات والأنماط وفرص تحسين الكفاءة التشغيلية.</li>
-                        <li data-i18n="exp2_2">تطوير لوحات تحكم وتقارير مستندة إلى Excel لمتابعة مؤشرات الأداء الرئيسية (KPIs) بانتظام.</li>
-                        <li data-i18n="exp2_3">تنظيف والتحقق من صحة مجموعات البيانات الكبيرة لضمان الاتساق والدقة التامة.</li>
-                        <li data-i18n="exp2_4">أتمتة العمليات اليدوية لإعداد التقارير، مما أدى إلى تقليل زمن الإنجاز وتقليل نسبة الأخطاء.</li>
-                    </ul>
-                </div>
+            <div class="card">
+                <h3 data-i18n="exp2_role">Sales Analyst</h3>
+                <div class="subtitle">Al-Eman Foundation | <span data-i18n="exp2_loc">الشرقية، مصر</span> (2023)</div>
+                <ul>
+                    <li data-i18n="exp2_1">تحليل بيانات المبيعات والعمليات لتحديد الاتجاهات وفرص تحسين الأداء.</li>
+                    <li data-i18n="exp2_2">تطوير داشبوردات Excel لمتابعة مؤشرات الأداء الرئيسية (KPIs) للإدارة.</li>
+                </ul>
             </div>
 
             <!-- Raneen Company -->
-            <div class="timeline-item">
-                <div class="card">
-                    <h3 data-i18n="exp3_role">Data Analyst</h3>
-                    <div class="subtitle">Raneen Company | <span data-i18n="exp3_loc">الجيزة، مصر</span> (Jan 2022 - Dec 2022)</div>
-                    <ul>
-                        <li data-i18n="exp3_1">إجراء تحليل البيانات لدعم اتخاذ القرارات التسويقية والتجارية.</li>
-                        <li data-i18n="exp3_2">إنشاء وصيانة ملفات Excel المتقدمة والتقارير لمتابعة الأداء بشكل مستمر.</li>
-                        <li data-i18n="exp3_3">تحليل أداء الحملات التسويقية والقنوات وحساب عائد الاستثمار (ROI) وتقديم التوصيات للإدارة.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title" data-i18n="title_skills">المهارات الفنية والأدوات</h2>
-        <div class="skills-grid">
-            <div class="card skill-category">
-                <h3 data-i18n="skill_bi"><i class="fa-solid fa-chart-line"></i> ذكاء الأعمال والتمثيل البياني</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">Power Query</span>
-                    <span class="skill-tag">DAX Measures</span>
-                    <span class="skill-tag">Dashboard Design</span>
-                    <span class="skill-tag">Data Visualization</span>
-                </div>
-            </div>
-            <div class="card skill-category">
-                <h3 data-i18n="skill_db"><i class="fa-solid fa-database"></i> قواعد البيانات ونمذجة البيانات</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">SQL (Queries, Joins, Aggregation)</span>
-                    <span class="skill-tag">Data Modeling</span>
-                    <span class="skill-tag">Star Schema</span>
-                    <span class="skill-tag">ETL Processes</span>
-                    <span class="skill-tag">Relational Databases</span>
-                </div>
-            </div>
-            <div class="card skill-category">
-                <h3 data-i18n="skill_analysis"><i class="fa-solid fa-calculator"></i> التحليل المالي والتقارير</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Advanced Excel</span>
-                    <span class="skill-tag">Feasibility Studies</span>
-                    <span class="skill-tag">KPI Tracking</span>
-                    <span class="skill-tag">Report Automation</span>
-                    <span class="skill-tag">Financial Valuation</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education & Certifications -->
-    <section id="education">
-        <h2 class="section-title" data-i18n="title_edu">التعليم والشهادات الاحترافية</h2>
-        <div class="edu-grid">
             <div class="card">
-                <i class="fa-solid fa-graduation-cap" style="font-size: 2.2rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 data-i18n="edu_title">بكالوريوس التجارة (الشعبة الإنجليزية)</h3>
-                <p style="color: var(--text-secondary);" data-i18n="edu_sub">قسم الإحصاء والرياضة - جامعة الأزهر</p>
-                <p style="margin-top: 0.8rem; font-weight: 700; color: #10b981;" data-i18n="edu_grade">تقدير عام: جيد جداً (دفعة 2021)</p>
-            </div>
-            <div class="card">
-                <i class="fa-solid fa-certificate" style="font-size: 2.2rem; color: var(--accent); margin-bottom: 1rem;"></i>
-                <h3 data-i18n="cert_title">الشهادات المعتمدة</h3>
-                <ul style="padding-inline-start: 1.2rem; margin-top: 0.8rem;">
-                    <li>Data Analyst Professional Certificate - IBM</li>
-                    <li>Data Analysis in Power BI - Microsoft</li>
-                    <li>Data Visualization in Power BI - DataCamp</li>
-                    <li>Data Analysis in Excel - DataCamp</li>
-                    <li>Big Data Analysis Using Excel - M3AARF</li>
+                <h3 data-i18n="exp3_role">Data Analyst</h3>
+                <div class="subtitle">Raneen Company | <span data-i18n="exp3_loc">الجيزة، مصر</span> (2022)</div>
+                <ul>
+                    <li data-i18n="exp3_1">تحليل أداء الحملات التسويقية والقنوات وحساب عائد الاستثمار (ROI).</li>
+                    <li data-i18n="exp3_2">إنشاء وتقارير متابعة دورية تدعم اتخاذ القرارات التسويقية والتجارية.</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="contact-box">
-            <h2 style="font-size: 2.2rem; margin-bottom: 0.8rem;" data-i18n="contact_title">هل تبحث عن محلل بيانات ومطور Power BI لشركتك؟</h2>
-            <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto;" data-i18n="contact_subtitle">
-                أنا موجود حالياً في الرياض، المملكة العربية السعودية ومتاح للفرص والمشاريع الاحترافية.
-            </p>
-            <div class="contact-btns">
-                <a href="https://wa.me/966565490074" target="_blank" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
-                    <i class="fa-brands fa-whatsapp"></i> <span data-i18n="btn_whatsapp">تواصل عبر الواتساب</span>
-                </a>
-                <a href="mailto:mohmedamiinn@gmail.com" class="btn-outline" style="font-size: 1.1rem; padding: 1rem 2rem;">
-                    <i class="fa-solid fa-paper-plane"></i> <span data-i18n="btn_email">إرسال بريد إلكتروني</span>
-                </a>
+    <!-- Skills Section -->
+    <section class="reveal" id="skills">
+        <h2 class="section-title" data-i18n="title_skills">المهارات والأدوات</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3 data-i18n="cat_bi">Business Intelligence</h3>
+                <div class="tags-container">
+                    <span class="tag-pill">Power BI</span>
+                    <span class="tag-pill">Power Query</span>
+                    <span class="tag-pill">DAX Measures</span>
+                    <span class="tag-pill">Dashboard Design</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3 data-i18n="cat_db">Databases & Modeling</h3>
+                <div class="tags-container">
+                    <span class="tag-pill">SQL Queries</span>
+                    <span class="tag-pill">Star Schema</span>
+                    <span class="tag-pill">ETL Processes</span>
+                    <span class="tag-pill">Data Normalization</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3 data-i18n="cat_analytics">Analytics & Reporting</h3>
+                <div class="tags-container">
+                    <span class="tag-pill">Advanced Excel</span>
+                    <span class="tag-pill">Financial Analytics</span>
+                    <span class="tag-pill">KPI Automation</span>
+                    <span class="tag-pill">Feasibility Studies</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="reveal" id="education">
+        <h2 class="section-title" data-i18n="title_edu">التعليم والشهادات</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3 data-i18n="edu_degree">بكالوريوس التجارة (الشعبة الإنجليزية)</h3>
+                <div class="subtitle" data-i18n="edu_inst">قسم الإحصاء والرياضة - جامعة الأزهر (2021)</div>
+                <p style="color: var(--accent); font-weight: 700;" data-i18n="edu_grade">تقدير عام: جيد جداً</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="certs_title">الشهادات المعتمدة</h3>
+                <div class="tags-container" style="margin-top: 0.5rem;">
+                    <span class="tag-pill">IBM Data Analyst Professional</span>
+                    <span class="tag-pill">Microsoft Power BI Analysis</span>
+                    <span class="tag-pill">DataCamp Data Visualization</span>
+                    <span class="tag-pill">M3AARF Big Data Excel</span>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Mohamed Amin. All Rights Reserved. | <span data-i18n="footer_rights">محلل البيانات ومطور Power BI - الرياض</span></p>
+        <p>&copy; 2026 Mohamed Amin. All Rights Reserved. | <span data-i18n="footer">محلل البيانات ومطور Power BI - الرياض</span></p>
     </footer>
 
+    <!-- JavaScript logic -->
     <script>
-        // Translations Dictionary
-        const translations = {
+        // 1. Language Translation Dictionary
+        const i18n = {
             ar: {
                 nav_about: "عني",
-                nav_dashboard: "لوحة البيانات",
-                nav_projects: "المشاريع",
+                nav_dashboard: "الداشبورد",
                 nav_experience: "الخبرات",
                 nav_skills: "المهارات",
                 nav_education: "التعليم",
-                hero_title: "محمد أمين",
-                hero_subtitle: "Data Analyst & Power BI Developer",
-                hero_desc: "محلل بيانات ومطور Power BI بخبرة تتجاوز 5 سنوات في تحويل البيانات المعقدة إلى لوحات تحكم تفاعلية وقرارات استراتيجية. أتميز ببناء نماذج بيانات متقدمة (Star Schema)، كتابة استعلامات SQL عالية الكفاءة، وأتمتة التقارير المالية والتشغيلية في الرياض، المملكة العربية السعودية.",
-                btn_whatsapp: "واتساب مباشر",
-                btn_contact: "تواصل إلكتروني",
+                hero_name: "محمد أمين",
+                hero_title: "Data Analyst & Power BI Developer",
+                hero_desc: "محلل بيانات ومطور Power BI بخبرة أرقام تتجاوز 5 سنوات في تحويل البيانات المعقدة إلى رؤى استراتيجية. متقدم في بناء نماذج البيانات Star Schema، كتابة استعلامات SQL عالية الكفاءة، وأتمتة التقارير المالية والتشغيلية بالرياض.",
+                btn_whatsapp: "تواصل عبر الواتساب",
+                btn_email: "البريد الإلكتروني",
                 loc: "الرياض، المملكة العربية السعودية",
-                hero_card_title: "الخبرات والأرقام الرئيسية",
-                hero_card_desc: "أرقام وإنجازات تعكس جودة ودقة التحليلات المقدمة للشركات:",
+                stats_title: "ملخص الإنجازات",
+                stats_sub: "مؤشرات أداء تعكس جودة وكفاءة العمل:",
                 stat_exp: "سنوات خبرة",
-                stat_time: "تقليل وقت التقارير",
-                stat_reports: "تقرير وداشبورد",
-                stat_accuracy: "دقة تنقية البيانات",
-                title_dashboard: "لوحة بيانات تفاعلية (نموذج حي)",
-                dash_overview: "مؤشرات الأداء وتحليل أثر الأتمتة",
-                dash_sub: "نموذج تفاعلي يوضح توزيع الجهد وكفاءة معالجة البيانات حسب المصادر",
-                filter_all: "جميع المشاريع",
-                filter_ksa: "المملكة العربية السعودية (Fair Value)",
-                filter_egypt: "جمهورية مصر العربية (مؤسسة الإيمان & رنين)",
-                kpi_exp: "الخبرة العملية",
-                kpi_time: "تقليل الجهد اليدوي",
-                kpi_tools: "أدوات رئيسية",
-                kpi_accuracy: "دقة التحليل والنمذجة",
-                title_projects: "معرض المشاريع والحلول",
-                tab_all: "الكل",
-                tab_pbi: "Power BI & DAX",
-                tab_sql: "SQL & Modeling",
-                tab_fin: "التحليل المالي",
-                p1_title: "لوحة قياس الأداء المالي والتقييم الاستثماري",
-                p1_desc: "تصميم داشبورد Power BI متكامل لربط القوائم المالية، أتمتة حساب النسب المالية، ودراسات الجدوى المالية مع تقليل زمن إعداد التقارير بنسبة 30%.",
-                p2_title: "نموذج بيانات المبيعات الموحد (Star Schema)",
-                p2_desc: "بناء نموذج بيانات متقدم باستخدام SQL و Power Query لدمج بيانات المبيعات من مصادر متعددة وتحديد اتجاهات العملاء وعائد الاستثمار (ROI).",
-                p3_title: "أتمتة التقارير التشغيلية المتقدمة",
-                p3_desc: "تطوير نظام تقارير آلي بين Excel و Power BI لمتابعة مؤشرات الأداء الرئيسية (KPIs) اليومية والأسبوعية للقيادة التنفيذية.",
+                stat_effort: "تقليل الجهد اليدوي",
+                stat_dashboards: "لوحة تحكم وتقارير",
+                stat_accuracy: "دقة وتنقية البيانات",
+                title_dashboard: "لوحة بيانات تفاعلية حية",
+                chart_title: "توزيع كفاءة وأثر أتمتة التقارير",
+                chart_sub: "مقياس الأداء حسب التقنيات المستخدمة",
                 title_experience: "الخبرات العملية",
                 exp1_role: "Data Analyst & Power BI Developer",
                 exp1_loc: "الرياض / الدمام، السعودية",
                 present: "الحالي",
-                exp1_1: "تصميم وتطوير لوحات تحكم تفاعلية وتقارير Power BI احترافية تحول البيانات المعقدة إلى رؤى واضحة لدعم اتخاذ القرار.",
-                exp1_2: "بناء وصيانة نماذج بيانات قوية باستخدام Power Query و DAX، مما أدى إلى تبسيط معالجة البيانات وتقليل الجهد اليدوي للتقارير بنسبة 30%.",
-                exp1_3: "كتابة وتحسين استعلامات SQL لاستخراج وتنظيف وتحليل كميات ضخمة من البيانات الممتدة عبر مصادر متعددة.",
-                exp1_4: "إجراء التحليلات المالية والاستثمارية لدعم تقييم الشركات ودراسات الجدوى بدقة عالية.",
-                exp1_5: "أتمتة التقارير وسير العمل بين Excel و Power BI لزيادة سرعة ودقة التقارير لجميع الإدارات.",
+                exp1_1: "تصميم وتطوير لوحات تحكم تفاعلية في Power BI تحول البيانات المعقدة إلى رؤى واضحة.",
+                exp1_2: "بناء نماذج بيانات متقدمة بـ Power Query و DAX مما قلل وقت التقارير اليدوية بنسبة 30%.",
+                exp1_3: "كتابة استعلامات SQL محسنة لاستخراج وتحليل البيانات المالية والاستثمارية ودراسات الجدوى.",
                 exp2_role: "Sales Analyst",
                 exp2_loc: "الشرقية، مصر",
-                exp2_1: "تحليل بيانات المبيعات والعمليات لتحديد الاتجاهات والأنماط وفرص تحسين الكفاءة التشغيلية.",
-                exp2_2: "تطوير لوحات تحكم وتقارير مستندة إلى Excel لمتابعة مؤشرات الأداء الرئيسية (KPIs) بانتظام.",
-                exp2_3: "تنظيف والتحقق من صحة مجموعات البيانات الكبيرة لضمان الاتساق والدقة التامة.",
-                exp2_4: "أتمتة العمليات اليدوية لإعداد التقارير، مما أدى إلى تقليل زمن الإنجاز وتقليل نسبة الأخطاء.",
+                exp2_1: "تحليل بيانات المبيعات والعمليات لتحديد الاتجاهات وفرص تحسين الأداء.",
+                exp2_2: "تطوير داشبوردات Excel لمتابعة مؤشرات الأداء الرئيسية (KPIs) للإدارة.",
                 exp3_role: "Data Analyst",
                 exp3_loc: "الجيزة، مصر",
-                exp3_1: "إجراء تحليل البيانات لدعم اتخاذ القرارات التسويقية والتجارية.",
-                exp3_2: "إنشاء وصيانة ملفات Excel المتقدمة والتقارير لمتابعة الأداء بشكل مستمر.",
-                exp3_3: "تحليل أداء الحملات التسويقية والقنوات وحساب عائد الاستثمار (ROI) وتقديم التوصيات للإدارة.",
-                title_skills: "المهارات الفنية والأدوات",
-                skill_bi: "ذكاء الأعمال والتمثيل البياني",
-                skill_db: "قواعد البيانات ونمذجة البيانات",
-                skill_analysis: "التحليل المالي والتقارير",
-                title_edu: "التعليم والشهادات الاحترافية",
-                edu_title: "بكالوريوس التجارة (الشعبة الإنجليزية)",
-                edu_sub: "قسم الإحصاء والرياضة - جامعة الأزهر",
-                edu_grade: "تقدير عام: جيد جداً (دفعة 2021)",
-                cert_title: "الشهادات المعتمدة",
-                contact_title: "هل تبحث عن محلل بيانات ومطور Power BI لشركتك؟",
-                contact_subtitle: "أنا موجود حالياً في الرياض، المملكة العربية السعودية ومتاح للفرص والمشاريع الاحترافية.",
-                btn_email: "إرسال بريد إلكتروني",
-                footer_rights: "محلل البيانات ومطور Power BI - الرياض"
+                exp3_1: "تحليل أداء الحملات التسويقية والقنوات وحساب عائد الاستثمار (ROI).",
+                exp3_2: "إنشاء وتقارير متابعة دورية تدعم اتخاذ القرارات التسويقية والتجارية.",
+                title_skills: "المهارات والأدوات",
+                cat_bi: "ذكاء الأعمال والتمثيل البياني",
+                cat_db: "قواعد البيانات والنمذجة",
+                cat_analytics: "التحليل المالي والتقارير",
+                title_edu: "التعليم والشهادات",
+                edu_degree: "بكالوريوس التجارة (الشعبة الإنجليزية)",
+                edu_inst: "قسم الإحصاء والرياضة - جامعة الأزهر (2021)",
+                edu_grade: "تقدير عام: جيد جداً",
+                certs_title: "الشهادات المعتمدة",
+                footer: "محلل البيانات ومطور Power BI - الرياض"
             },
             en: {
                 nav_about: "About",
                 nav_dashboard: "Dashboard",
-                nav_projects: "Projects",
                 nav_experience: "Experience",
                 nav_skills: "Skills",
                 nav_education: "Education",
-                hero_title: "Mohamed Amin",
-                hero_subtitle: "Data Analyst & Power BI Developer",
-                hero_desc: "Results-driven Data Analyst & Power BI Developer with 5+ years of experience transforming complex datasets into actionable insights. Skilled in Star Schema data modeling, high-performance SQL querying, DAX, and automated financial/sales reporting in Riyadh, Saudi Arabia.",
-                btn_whatsapp: "Direct WhatsApp",
-                btn_contact: "Email Contact",
+                hero_name: "Mohamed Amin",
+                hero_title: "Data Analyst & Power BI Developer",
+                hero_desc: "Data Analyst & Power BI Developer with 5+ years of experience transforming complex datasets into strategic business insights. Expert in Star Schema modeling, SQL query optimization, and automating financial & sales reporting in Riyadh, KSA.",
+                btn_whatsapp: "WhatsApp Contact",
+                btn_email: "Email Direct",
                 loc: "Riyadh, Saudi Arabia",
-                hero_card_title: "Key Highlights & Stats",
-                hero_card_desc: "Proven metrics reflecting data quality and reporting efficiency:",
-                stat_exp: "Years Exp.",
-                stat_time: "Time Saved",
-                stat_reports: "Dashboards Built",
+                stats_title: "Key Highlights",
+                stats_sub: "Metrics reflecting analytical accuracy & efficiency:",
+                stat_exp: "Years Experience",
+                stat_effort: "Effort Reduction",
+                stat_dashboards: "Dashboards Built",
                 stat_accuracy: "Data Precision",
-                title_dashboard: "Interactive Dashboard (Live Demo)",
-                dash_overview: "KPI Performance & Automation Impact",
-                dash_sub: "Interactive breakdown demonstrating data efficiency and automation impact",
-                filter_all: "All Projects",
-                filter_ksa: "Saudi Arabia (Fair Value)",
-                filter_egypt: "Egypt (Al-Eman & Raneen)",
-                kpi_exp: "Experience",
-                kpi_time: "Manual Effort Reduction",
-                kpi_tools: "Core Tools",
-                kpi_accuracy: "Data & Model Accuracy",
-                title_projects: "Featured Projects & Solutions",
-                tab_all: "All",
-                tab_pbi: "Power BI & DAX",
-                tab_sql: "SQL & Modeling",
-                tab_fin: "Financial Analysis",
-                p1_title: "Financial Performance & Valuation Dashboard",
-                p1_desc: "Comprehensive Power BI dashboard integrating financial statements, automating financial ratios, and valuation models while cutting reporting time by 30%.",
-                p2_title: "Unified Sales Data Model (Star Schema)",
-                p2_desc: "Advanced data model engineered with SQL and Power Query to aggregate multi-source sales data, ROI tracking, and trend analysis.",
-                p3_title: "Automated Enterprise Reporting System",
-                p3_desc: "Automated workflow between Excel and Power BI for tracking executive daily and weekly KPIs seamlessly.",
+                title_dashboard: "Live Interactive Dashboard",
+                chart_title: "Automation & Efficiency Impact",
+                chart_sub: "Performance score across technical stack",
                 title_experience: "Professional Experience",
                 exp1_role: "Data Analyst & Power BI Developer",
                 exp1_loc: "Riyadh / Dammam, KSA",
                 present: "Present",
-                exp1_1: "Design and develop interactive Power BI dashboards and reports that turn complex datasets into clear, actionable insights.",
-                exp1_2: "Build and maintain robust data models using Power Query and DAX, cutting manual reporting effort by 30%.",
-                exp1_3: "Write and optimize SQL queries to extract, clean, and analyze large datasets across multiple sources.",
-                exp1_4: "Conduct financial and investment data analysis supporting business valuation and feasibility studies.",
-                exp1_5: "Automate recurring reports and workflows across Excel and Power BI, enhancing reporting speed and accuracy.",
+                exp1_1: "Designed interactive Power BI dashboards turning complex datasets into clear executive insights.",
+                exp1_2: "Engineered robust DAX & Power Query data models, reducing manual reporting time by 30%.",
+                exp1_3: "Optimized SQL queries for financial analytics, investment valuation, and feasibility studies.",
                 exp2_role: "Sales Analyst",
                 exp2_loc: "Sharqia, Egypt",
-                exp2_1: "Analyzed sales and operational data to identify trends, patterns, and optimization opportunities.",
-                exp2_2: "Developed Excel-based dashboards and reports to track key performance indicators (KPIs).",
-                exp2_3: "Cleaned and validated large datasets to ensure complete reporting accuracy.",
-                exp2_4: "Automated manual reporting processes, reducing turnaround time and errors.",
+                exp2_1: "Analyzed sales and operational data to pinpoint trends and efficiency gains.",
+                exp2_2: "Created Excel KPI dashboards for continuous executive review.",
                 exp3_role: "Data Analyst",
                 exp3_loc: "Giza, Egypt",
-                exp3_1: "Performed data analytics supporting marketing and strategic business decision-making.",
-                exp3_2: "Built and maintained Excel workbooks and reports for ongoing performance tracking.",
-                exp3_3: "Analyzed campaign performance, calculated ROI, and presented findings to key stakeholders.",
+                exp3_1: "Analyzed marketing campaign performance and calculated marketing ROI.",
+                exp3_2: "Maintained tracking workbooks supporting commercial decision-making.",
                 title_skills: "Technical Skills & Tools",
-                skill_bi: "BI & Data Visualization",
-                skill_db: "Databases & Data Modeling",
-                skill_analysis: "Financial & Advanced Analytics",
+                cat_bi: "Business Intelligence",
+                cat_db: "Databases & Modeling",
+                cat_analytics: "Analytics & Reporting",
                 title_edu: "Education & Certifications",
-                edu_title: "Bachelor of Commerce (English Section)",
-                edu_sub: "Statistics and Mathematics Department - Al-Azhar University",
-                edu_grade: "Grade: Very Good (Graduated 2021)",
-                cert_title: "Certifications",
-                contact_title: "Looking for a Data Analyst & Power BI Developer?",
-                contact_subtitle: "Currently based in Riyadh, Saudi Arabia and open for high-impact opportunities and projects.",
-                btn_email: "Send Email",
-                footer_rights: "Data Analyst & Power BI Developer - Riyadh"
+                edu_degree: "Bachelor of Commerce (English Section)",
+                edu_inst: "Statistics & Math Dept - Al-Azhar University (2021)",
+                edu_grade: "Grade: Very Good",
+                certs_title: "Certified Credentials",
+                footer: "Data Analyst & Power BI Developer - Riyadh"
             }
         };
 
         let currentLang = 'ar';
-        let currentTheme = localStorage.getItem('theme') || 'dark';
+        let currentTheme = 'dark';
 
-        // Apply Theme
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        updateThemeUI();
-
-        // Language Switcher
-        const langBtn = document.getElementById('lang-toggle');
+        // 2. Language Switcher Logic
+        const langBtn = document.getElementById('lang-btn');
         langBtn.addEventListener('click', () => {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('lang-text').innerText = currentLang === 'ar' ? 'English' : 'عربي';
-            
-            // Translate text
+            document.getElementById('lang-label').textContent = currentLang === 'ar' ? 'English' : 'عربي';
+
+            // Translate Text
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
+                if (i18n[currentLang][key]) {
+                    el.textContent = i18n[currentLang][key];
                 }
             });
 
-            updateCharts();
+            updateChart();
         });
 
-        // Theme Switcher
-        const themeBtn = document.getElementById('theme-toggle');
+        // 3. Theme Switcher Logic
+        const themeBtn = document.getElementById('theme-btn');
         themeBtn.addEventListener('click', () => {
             currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
             document.documentElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('theme', currentTheme);
-            updateThemeUI();
+            
+            const icon = document.getElementById('theme-icon');
+            icon.className = currentTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+            document.getElementById('theme-label').textContent = currentTheme === 'dark' ? 'Light' : 'Dark';
+
+            updateChartColors();
         });
 
-        function updateThemeUI() {
-            themeBtn.querySelector('i').className = currentTheme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
-            document.getElementById('theme-text').innerText = currentTheme === 'dark' ? 'Dark' : 'Light';
-        }
-
-        // Project Filtering
-        function filterProjects(category) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category.includes(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+        // 4. Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
                 }
             });
-        }
+        }, { threshold: 0.1 });
 
-        // Chart.js Setup
-        const ctx1 = document.getElementById('mainChart').getContext('2d');
-        const ctx2 = document.getElementById('pieChart').getContext('2d');
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        let mainChart = new Chart(ctx1, {
+        // 5. Chart.js Initialization
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        let chart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['Power BI', 'SQL Queries', 'DAX Modeling', 'Excel Automation', 'Financial Valuation'],
+                labels: ['Power BI', 'SQL Queries', 'DAX & Modeling', 'Excel Automation', 'Financial Analytics'],
                 datasets: [{
-                    label: 'Efficiency Impact Score (%)',
-                    data: [96, 92, 95, 88, 90],
+                    label: 'Impact Score',
+                    data: [95, 92, 94, 88, 90],
                     backgroundColor: '#38bdf8',
-                    borderRadius: 8
+                    borderRadius: 6
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
                 scales: {
-                    y: { beginAtZero: true, max: 100 }
+                    x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+                    y: { ticks: { color: '#94a3b8' }, grid: { color: '#334155' }, beginAtZero: true, max: 100 }
                 }
             }
         });
 
-        let pieChart = new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Power BI & DAX', 'SQL Databases', 'Excel & Automation', 'Financial Analysis'],
-                datasets: [{
-                    data: [45, 25, 18, 12],
-                    backgroundColor: ['#38bdf8', '#0284c7', '#10b981', '#f59e0b']
-                }]
-            },
-            options: { responsive: true }
-        });
+        function updateChartColors() {
+            const textColor = currentTheme === 'dark' ? '#94a3b8' : '#64748b';
+            const gridColor = currentTheme === 'dark' ? '#334155' : '#e2e8f0';
+            chart.options.scales.x.ticks.color = textColor;
+            chart.options.scales.y.ticks.color = textColor;
+            chart.options.scales.y.grid.color = gridColor;
+            chart.update();
+        }
 
-        function updateCharts() {
-            mainChart.update();
-            pieChart.update();
+        function updateChart() {
+            chart.data.labels = currentLang === 'ar' 
+                ? ['Power BI', 'استعلامات SQL', 'DAX والنمذجة', 'أتمتة Excel', 'التحليل المالي']
+                : ['Power BI', 'SQL Queries', 'DAX Modeling', 'Excel Automation', 'Financial Analytics'];
+            chart.update();
         }
     </script>
 </body>
