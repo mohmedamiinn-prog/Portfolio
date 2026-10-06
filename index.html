@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohamed Amin | Senior Data Analyst & Power BI Specialist</title>
     
-    <!-- Fonts -->
+    <!-- Google Fonts: Inter & Tajawal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +16,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Chart.js for Data Analytics Showcase -->
+    <!-- Chart.js for Live BI Visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -26,19 +26,20 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#0B0F19',
-                            card: '#111827',
-                            cardHover: '#1F2937',
-                            border: '#1F2937',
+                            dark: '#070A13',
+                            card: '#0F172A',
+                            cardHover: '#1E293B',
+                            border: 'rgba(51, 65, 85, 0.6)',
                             cyan: '#06B6D4',
                             blue: '#3B82F6',
                             purple: '#8B5CF6',
+                            emerald: '#10B981',
                             accent: '#00F2FE'
                         }
                     },
                     fontFamily: {
                         en: ['Inter', 'sans-serif'],
-                        ar: ['Cairo', 'sans-serif']
+                        ar: ['Tajawal', 'Cairo', 'sans-serif']
                     }
                 }
             }
@@ -47,19 +48,23 @@
     
     <style>
         body {
-            background-color: #0B0F19;
-            color: #F3F4F6;
-            font-family: 'Inter', 'Cairo', sans-serif;
+            background-color: #070A13;
+            color: #F8FAFC;
             overflow-x: hidden;
         }
 
-        .glow-effect {
-            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.3);
+        /* Ambient neon glow effects */
+        .neon-glow {
+            box-shadow: 0 0 35px -5px rgba(6, 182, 212, 0.35);
         }
 
+        .glow-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         .glow-card:hover {
-            box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.25);
-            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 30px -5px rgba(6, 182, 212, 0.3);
+            border-color: rgba(6, 182, 212, 0.6);
+            transform: translateY(-3px);
         }
 
         .text-gradient {
@@ -68,207 +73,205 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .text-gradient-purple {
-            background: linear-gradient(135deg, #A855F7 0%, #EC4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .glass-nav {
-            background: rgba(11, 15, 25, 0.85);
+            background: rgba(7, 10, 19, 0.85);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Animated Grid Overlay */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1F2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #06B6D4;
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #070A13; }
+        ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06B6D4; }
+
+        /* Custom Radio & Checkboxes style */
+        .custom-radio:checked + label {
+            border-color: #06B6D4;
+            background-color: rgba(6, 182, 212, 0.15);
+            color: #00F2FE;
         }
     </style>
 </head>
-<body class="bg-brand-dark text-gray-100 antialiased selection:bg-brand-cyan selection:text-black">
+<body class="bg-brand-dark text-slate-100 antialiased selection:bg-brand-cyan selection:text-black font-en">
 
+    <!-- Navigation Bar -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse group">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-blue flex items-center justify-center font-bold text-xl text-black shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-blue flex items-center justify-center font-black text-xl text-slate-950 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
                         MA
                     </div>
-                    <span class="text-xl font-bold tracking-tight text-white group-hover:text-brand-cyan transition-colors">
-                        Mohamed<span class="text-brand-cyan">.Amin</span>
-                    </span>
+                    <div class="flex flex-col">
+                        <span class="text-lg font-extrabold tracking-tight text-white group-hover:text-brand-cyan transition-colors">
+                            Mohamed<span class="text-brand-cyan">.Amin</span>
+                        </span>
+                        <span class="text-[10px] text-gray-400 tracking-wider font-mono uppercase" data-i18n="nav_role">Data & Power BI Specialist</span>
+                    </div>
                 </a>
 
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex items-center space-x-8 rtl:space-x-reverse font-medium text-sm">
+                <!-- Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-8 rtl:space-x-reverse font-medium text-xs tracking-wider uppercase">
                     <a href="#about" class="hover:text-brand-cyan transition-colors" data-i18n="nav_about">About</a>
-                    <a href="#skills" class="hover:text-brand-cyan transition-colors" data-i18n="nav_skills">Skills & Tools</a>
-                    <a href="#kpi-demo" class="hover:text-brand-cyan transition-colors" data-i18n="nav_demo">Live Dashboard</a>
-                    <a href="#projects" class="hover:text-brand-cyan transition-colors" data-i18n="nav_projects">Projects</a>
+                    <a href="#bi-dashboard" class="hover:text-brand-cyan transition-colors" data-i18n="nav_dashboard">Live BI Simulator</a>
+                    <a href="#skills" class="hover:text-brand-cyan transition-colors" data-i18n="nav_skills">Skills Matrix</a>
+                    <a href="#projects" class="hover:text-brand-cyan transition-colors" data-i18n="nav_projects">Case Studies</a>
+                    <a href="#estimator" class="hover:text-brand-cyan transition-colors" data-i18n="nav_estimator">ROI Estimator</a>
                     <a href="#experience" class="hover:text-brand-cyan transition-colors" data-i18n="nav_exp">Experience</a>
-                    <a href="#contact" class="hover:text-brand-cyan transition-colors" data-i18n="nav_contact">Contact</a>
                 </nav>
 
-                <!-- Actions: Language Toggle & CTA -->
+                <!-- Language Toggle & CTA Button -->
                 <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                    <button id="lang-toggle-btn" onclick="toggleLanguage()" class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1.5 rounded-lg border border-brand-border hover:border-brand-cyan text-xs font-semibold uppercase tracking-wider transition-all bg-brand-card hover:bg-brand-cardHover">
+                    <button id="lang-toggle-btn" onclick="toggleLanguage()" class="flex items-center space-x-2 rtl:space-x-reverse px-3 py-1.5 rounded-xl border border-brand-border hover:border-brand-cyan text-xs font-bold uppercase transition-all bg-brand-card hover:bg-brand-cardHover shadow-inner">
                         <i class="fa-solid fa-globe text-brand-cyan"></i>
                         <span id="lang-text">العربية</span>
                     </button>
 
-                    <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/20 hover:scale-105 transition-all">
+                    <a href="#contact" class="hidden sm:inline-flex items-center px-5 py-2.5 rounded-xl text-xs font-extrabold uppercase tracking-wider bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 hover:scale-105 transition-all">
                         <span data-i18n="hire_me">Get In Touch</span>
                     </a>
 
                     <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-white p-2" onclick="toggleMobileMenu()">
+                    <button id="mobile-menu-btn" class="lg:hidden text-gray-400 hover:text-white p-2" onclick="toggleMobileMenu()">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Navigation Drawer -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-brand-border px-4 pt-2 pb-6 space-y-3">
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-card border-b border-brand-border px-6 pt-3 pb-6 space-y-3 font-medium text-sm">
             <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_about">About</a>
-            <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_skills">Skills & Tools</a>
-            <a href="#kpi-demo" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_demo">Live Dashboard</a>
-            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_projects">Projects</a>
+            <a href="#bi-dashboard" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_dashboard">Live BI Simulator</a>
+            <a href="#skills" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_skills">Skills Matrix</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_projects">Case Studies</a>
+            <a href="#estimator" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_estimator">ROI Estimator</a>
             <a href="#experience" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_exp">Experience</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-gray-300 hover:text-brand-cyan" data-i18n="nav_contact">Contact</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-brand-cyan font-bold" data-i18n="nav_contact">Contact Me</a>
         </div>
     </header>
 
-    <main class="pt-20">
-        <section id="about" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20">
-            <!-- Background Glows -->
-            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-brand-cyan/10 rounded-full blur-[120px] pointer-events-none"></div>
-            <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-brand-purple/10 rounded-full blur-[100px] pointer-events-none"></div>
+    <main class="relative bg-grid-pattern">
+
+        <!-- Hero Section -->
+        <section id="about" class="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden">
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-cyan/10 rounded-full blur-[140px] pointer-events-none"></div>
+            <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     
-                    <!-- Left Column: Intro text -->
+                    <!-- Text Content -->
                     <div class="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
-                        <div class="inline-flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/30 text-brand-cyan text-xs font-semibold uppercase tracking-wider">
-                            <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
-                            <span data-i18n="hero_badge">5+ Years Transforming Business Data</span>
+                        <div class="inline-flex items-center space-x-2.5 rtl:space-x-reverse px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-brand-cyan text-xs font-bold uppercase tracking-wider shadow-inner">
+                            <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-ping"></span>
+                            <span data-i18n="hero_badge">5+ Years Senior Data Analytics & BI Experience</span>
                         </div>
 
-                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+                        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-none text-white">
                             <span data-i18n="hero_title_prefix">Hello, I'm</span> <br/>
                             <span class="text-gradient" data-i18n="hero_name">Mohamed Amin</span>
                         </h1>
 
-                        <h2 class="text-xl sm:text-2xl font-semibold text-gray-300" data-i18n="hero_subtitle">
-                            Senior Data Analyst & Power BI Developer
+                        <h2 class="text-xl sm:text-2xl font-bold text-slate-300" data-i18n="hero_subtitle">
+                            Senior Data Analyst & Enterprise Power BI Architect
                         </h2>
 
-                        <p class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed mx-auto lg:mx-0" data-i18n="hero_desc">
-                            Turning complex datasets into intuitive, high-impact business decisions. Expert in Power BI dashboard design, advanced DAX modeling, SQL query optimization, star schema architecture, and automated analytics solutions.
+                        <p class="text-slate-400 text-sm sm:text-base max-w-2xl leading-relaxed mx-auto lg:mx-0" data-i18n="hero_desc">
+                            Transforming complex multi-source enterprise data into actionable executive dashboards. Expert in high-performance DAX optimization, Star Schema modeling, automated ETL pipelines, SQL Server architectures, and row-level security (RLS).
                         </p>
 
-                        <!-- Key Stats Bar -->
-                        <div class="grid grid-cols-3 gap-4 pt-4 border-t border-brand-border/60 max-w-lg mx-auto lg:mx-0">
-                            <div>
-                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-cyan">5+</p>
-                                <p class="text-xs text-gray-400" data-i18n="stat_exp">Years Experience</p>
+                        <!-- Key Performance Metrics Counters -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-brand-border/60 max-w-xl mx-auto lg:mx-0">
+                            <div class="bg-brand-card/60 p-3 rounded-2xl border border-brand-border">
+                                <p class="text-2xl sm:text-3xl font-black text-brand-cyan font-mono" id="counter-exp">5+</p>
+                                <p class="text-[11px] text-gray-400 font-semibold" data-i18n="stat_exp">Years Experience</p>
                             </div>
-                            <div>
-                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-blue">80+</p>
-                                <p class="text-xs text-gray-400" data-i18n="stat_dashboards">Dashboards Built</p>
+                            <div class="bg-brand-card/60 p-3 rounded-2xl border border-brand-border">
+                                <p class="text-2xl sm:text-3xl font-black text-brand-blue font-mono" id="counter-dashboards">85+</p>
+                                <p class="text-[11px] text-gray-400 font-semibold" data-i18n="stat_dashboards">Dashboards Built</p>
                             </div>
-                            <div>
-                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple">99.8%</p>
-                                <p class="text-xs text-gray-400" data-i18n="stat_accuracy">Data Accuracy</p>
+                            <div class="bg-brand-card/60 p-3 rounded-2xl border border-brand-border">
+                                <p class="text-2xl sm:text-3xl font-black text-brand-emerald font-mono" id="counter-dax">45%</p>
+                                <p class="text-[11px] text-gray-400 font-semibold" data-i18n="stat_dax">DAX Query Speedup</p>
+                            </div>
+                            <div class="bg-brand-card/60 p-3 rounded-2xl border border-brand-border">
+                                <p class="text-2xl sm:text-3xl font-black text-brand-purple font-mono" id="counter-accuracy">99.9%</p>
+                                <p class="text-[11px] text-gray-400 font-semibold" data-i18n="stat_accuracy">Data Accuracy</p>
                             </div>
                         </div>
 
-                        <!-- CTA Buttons -->
+                        <!-- Action Buttons -->
                         <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
-                            <a href="#projects" class="px-7 py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all flex items-center space-x-2 rtl:space-x-reverse">
-                                <span data-i18n="btn_projects">Explore Projects</span>
-                                <i class="fa-solid fa-arrow-right text-xs rtl:rotate-180"></i>
+                            <a href="#bi-dashboard" class="px-7 py-3.5 rounded-xl font-extrabold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 hover:-translate-y-0.5 transition-all flex items-center space-x-2 rtl:space-x-reverse text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-chart-bar text-sm"></i>
+                                <span data-i18n="btn_demo">Test Live BI Simulator</span>
                             </a>
-                            <a href="#kpi-demo" class="px-7 py-3.5 rounded-xl font-semibold bg-brand-card border border-brand-border hover:border-brand-cyan text-gray-200 hover:text-white transition-all flex items-center space-x-2 rtl:space-x-reverse">
-                                <i class="fa-solid fa-chart-line text-brand-cyan"></i>
-                                <span data-i18n="btn_demo">Live Analytics Demo</span>
+                            <a href="#estimator" class="px-7 py-3.5 rounded-xl font-bold bg-brand-card border border-brand-border hover:border-brand-cyan text-slate-200 hover:text-white transition-all flex items-center space-x-2 rtl:space-x-reverse text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-calculator text-brand-cyan"></i>
+                                <span data-i18n="btn_estimator">Calculate Project Scope</span>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Right Column: Interactive Decorative Card -->
+                    <!-- Right Column Floating Visual -->
                     <div class="lg:col-span-5">
                         <div class="relative mx-auto max-w-md">
-                            <!-- Card Glowing Background -->
-                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple opacity-30 blur-xl"></div>
+                            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-cyan via-brand-blue to-brand-purple opacity-30 blur-2xl animate-pulse"></div>
                             
-                            <!-- Main Visual Card -->
                             <div class="relative bg-brand-card border border-brand-border p-6 rounded-3xl space-y-6 shadow-2xl">
-                                <div class="flex items-center justify-between border-b border-brand-border/60 pb-4">
+                                <div class="flex items-center justify-between border-b border-brand-border pb-4">
                                     <div class="flex items-center space-x-3 rtl:space-x-reverse">
-                                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 flex items-center justify-center">
-                                            <i class="fa-solid fa-user-gear text-brand-cyan text-xl"></i>
+                                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500/20 to-blue-500/20 border border-cyan-500/40 flex items-center justify-center text-brand-cyan">
+                                            <i class="fa-solid fa-diagram-next text-2xl"></i>
                                         </div>
                                         <div>
-                                            <p class="font-bold text-white text-base">Mohamed Amin</p>
-                                            <p class="text-xs text-brand-cyan font-mono" data-i18n="card_status">● Available for Projects</p>
+                                            <h3 class="font-bold text-white text-base">Mohamed Amin</h3>
+                                            <p class="text-xs text-brand-cyan font-mono" data-i18n="card_status">● Enterprise Analytics Ready</p>
                                         </div>
                                     </div>
-                                    <span class="text-xs bg-brand-border px-2.5 py-1 rounded-md text-gray-300 font-mono">DAX / SQL</span>
+                                    <span class="text-[10px] bg-brand-dark px-2.5 py-1 rounded-md text-brand-cyan border border-brand-cyan/30 font-mono">STAR SCHEMA</span>
                                 </div>
 
-                                <!-- Mini Metrics Preview -->
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div class="bg-brand-dark/80 p-3.5 rounded-2xl border border-brand-border">
-                                        <div class="flex justify-between items-center text-xs text-gray-400 mb-1">
-                                            <span data-i18n="hero_card_m1">DAX Performance</span>
-                                            <i class="fa-solid fa-bolt text-amber-400"></i>
-                                        </div>
-                                        <p class="text-lg font-bold text-white">Optimal</p>
-                                        <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                                            <div class="bg-brand-cyan h-full rounded-full w-[95%]"></div>
-                                        </div>
+                                <!-- Live Data Pipeline Simulation Status -->
+                                <div class="space-y-3 font-mono text-xs">
+                                    <div class="flex justify-between items-center bg-brand-dark/80 p-3 rounded-xl border border-brand-border">
+                                        <span class="text-gray-400" data-i18n="pipe_sql">SQL Server Pipeline</span>
+                                        <span class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle mr-1"></i> Connected</span>
                                     </div>
-                                    <div class="bg-brand-dark/80 p-3.5 rounded-2xl border border-brand-border">
-                                        <div class="flex justify-between items-center text-xs text-gray-400 mb-1">
-                                            <span data-i18n="hero_card_m2">Data Security</span>
-                                            <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                                        </div>
-                                        <p class="text-lg font-bold text-white">RLS Enabled</p>
-                                        <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                                            <div class="bg-emerald-400 h-full rounded-full w-[100%]"></div>
-                                        </div>
+                                    <div class="flex justify-between items-center bg-brand-dark/80 p-3 rounded-xl border border-brand-border">
+                                        <span class="text-gray-400" data-i18n="pipe_dax">DAX Engine Memory</span>
+                                        <span class="text-brand-cyan font-bold">100% Compressed</span>
+                                    </div>
+                                    <div class="flex justify-between items-center bg-brand-dark/80 p-3 rounded-xl border border-brand-border">
+                                        <span class="text-gray-400" data-i18n="pipe_rls">Row Level Security</span>
+                                        <span class="text-purple-400 font-bold">Dynamic Activated</span>
                                     </div>
                                 </div>
 
-                                <!-- Schema Visual Badge -->
-                                <div class="bg-brand-dark/60 p-4 rounded-2xl border border-brand-border/60 text-xs text-gray-300 space-y-2">
-                                    <div class="flex justify-between items-center font-mono text-brand-cyan">
-                                        <span><i class="fa-solid fa-diagram-project mr-1.5 rtl:ml-1.5"></i> Star Schema Model</span>
-                                        <span class="text-emerald-400">Active</span>
-                                    </div>
-                                    <p class="text-gray-400 text-xs" data-i18n="hero_card_desc">Designed for high-performance enterprise reporting and seamless cross-filtering.</p>
-                                </div>
-
-                                <!-- Quick Tech Pills -->
-                                <div class="flex flex-wrap gap-2 text-xs">
-                                    <span class="px-2.5 py-1 rounded-lg bg-cyan-950/40 text-cyan-300 border border-cyan-800/40">Power BI</span>
-                                    <span class="px-2.5 py-1 rounded-lg bg-blue-950/40 text-blue-300 border border-blue-800/40">Power Query</span>
-                                    <span class="px-2.5 py-1 rounded-lg bg-purple-950/40 text-purple-300 border border-purple-800/40">SQL Server</span>
-                                    <span class="px-2.5 py-1 rounded-lg bg-emerald-950/40 text-emerald-300 border border-emerald-800/40">Python</span>
+                                <!-- Stack Badges -->
+                                <div class="flex flex-wrap gap-2 text-[11px] pt-2">
+                                    <span class="px-2.5 py-1 rounded-lg bg-cyan-950/60 text-cyan-300 border border-cyan-800/40 font-mono">Power BI</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-blue-950/60 text-blue-300 border border-blue-800/40 font-mono">DAX</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-purple-950/60 text-purple-300 border border-purple-800/40 font-mono">Power Query</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 font-mono">SQL</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-amber-950/60 text-amber-300 border border-amber-800/40 font-mono">Python</span>
                                 </div>
                             </div>
                         </div>
@@ -278,192 +281,122 @@
             </div>
         </section>
 
-        <section id="skills" class="py-20 bg-brand-dark/50 relative border-t border-brand-border/50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="skills_subtitle">Core Competencies</h2>
-                    <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="skills_title">Technical Mastery & Data Stack</p>
-                    <p class="text-gray-400 text-sm sm:text-base" data-i18n="skills_desc">Over 5 years mastering the full lifecycle of data visualization, modeling, ETL pipeline development, and data governance.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Power BI & DAX -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-chart-pie"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_pbi_title">Power BI & Advanced DAX</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_pbi_desc">Building dynamic, interactive dashboards with complex DAX measures, time intelligence, calculation groups, and row-level security (RLS).</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>DAX Optimization & Performance Tuning</li>
-                            <li>Row-Level Security (RLS & Dynamic RLS)</li>
-                            <li>Custom Visualizations & Drillthroughs</li>
-                        </ul>
-                    </div>
-
-                    <!-- Data Modeling -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-sitemap"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_model_title">Data Modeling & Star Schema</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_model_desc">Architecting efficient Star and Snowflake schemas, relationship cardinalities, data normalization, and aggregate table optimization.</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>Star / Snowflake Schema Architecture</li>
-                            <li>Fact & Dimension Tables Normalization</li>
-                            <li>Data Governance & Scalability</li>
-                        </ul>
-                    </div>
-
-                    <!-- SQL Analytics -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-database"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_sql_title">SQL Queries & Data ETL</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_sql_desc">Extracting, transforming, and querying relational databases using CTEs, window functions, complex joins, and stored procedures.</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>SQL Server / PostgreSQL / MySQL</li>
-                            <li>Power Query (M Code) Transformation</li>
-                            <li>Data Cleansing & Aggregation</li>
-                        </ul>
-                    </div>
-
-                    <!-- Automation & Python -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-code"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_auto_title">Automation & Python</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_auto_desc">Automating repetitive reporting tasks using Google Apps Script, Python scripts (Pandas/Numpy), and scheduled data refreshes.</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>Python (Pandas, Matplotlib, Seaborn)</li>
-                            <li>Google Apps Script & Sheet Automation</li>
-                            <li>Automated Refresh Pipelines</li>
-                        </ul>
-                    </div>
-
-                    <!-- Advanced Excel & Financial Modeling -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 text-green-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-file-excel"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_excel_title">Advanced Excel & Analytics</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_excel_desc">Expert-level spreadsheet modeling using Power Pivot, Power Query, complex formulas, macros, and financial metrics analysis.</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>Power Pivot & Data Model Integration</li>
-                            <li>XLOOKUP, INDEX/MATCH, Dynamic Arrays</li>
-                            <li>Financial & Variance Analysis</li>
-                        </ul>
-                    </div>
-
-                    <!-- Business Intelligence & Strategy -->
-                    <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all duration-300 group">
-                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-lightbulb"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2" data-i18n="skill_bi_title">Business Intelligence Strategy</h3>
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed" data-i18n="skill_bi_desc">Translating stakeholder requirements into KPIs, building executive summaries, and conducting cohort & trend analysis.</p>
-                        <ul class="text-xs text-gray-300 space-y-1.5 list-disc list-inside">
-                            <li>KPI Definition & Executive Dashboards</li>
-                            <li>Customer Behavior & Sales Analytics</li>
-                            <li>Cross-Functional Collaboration</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="kpi-demo" class="py-20 relative">
+        <!-- Live BI Dashboard Simulator -->
+        <section id="bi-dashboard" class="py-20 relative border-t border-brand-border/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-brand-cyan/5 rounded-full blur-3xl pointer-events-none"></div>
-
-                    <!-- Header with Controls -->
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-8 border-b border-brand-border">
+                    
+                    <!-- Section Header -->
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-brand-border">
                         <div>
                             <div class="inline-flex items-center space-x-2 rtl:space-x-reverse text-brand-cyan text-xs font-bold uppercase tracking-widest mb-1">
-                                <i class="fa-solid fa-desktop"></i>
-                                <span data-i18n="demo_badge">Interactive Component</span>
+                                <i class="fa-solid fa-sliders"></i>
+                                <span data-i18n="sim_badge">Interactive Live BI Simulator</span>
                             </div>
-                            <h2 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="demo_title">Embedded Analytics Demo Dashboard</h2>
-                            <p class="text-gray-400 text-xs sm:text-sm mt-1" data-i18n="demo_desc">Test the live filtering functionality below to experience interactive reporting capabilities.</p>
+                            <h2 class="text-2xl sm:text-4xl font-extrabold text-white" data-i18n="sim_title">Test Drive Power BI Filtering Capabilities</h2>
+                            <p class="text-slate-400 text-xs sm:text-sm mt-1" data-i18n="sim_desc">Adjust the slicers below to see live cross-filtering, dynamic KPI recalculations, and chart rendering.</p>
                         </div>
 
-                        <!-- Filter Buttons -->
-                        <div class="flex flex-wrap items-center gap-2 bg-brand-dark p-1.5 rounded-xl border border-brand-border">
-                            <button onclick="updateDemoChart('all')" id="btn-filter-all" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-brand-cyan text-black">
-                                <span data-i18n="filter_all">All Regions</span>
-                            </button>
-                            <button onclick="updateDemoChart('north')" id="btn-filter-north" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
-                                <span data-i18n="filter_north">North America</span>
-                            </button>
-                            <button onclick="updateDemoChart('emea')" id="btn-filter-emea" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
-                                <span data-i18n="filter_emea">EMEA</span>
-                            </button>
-                            <button onclick="updateDemoChart('apac')" id="btn-filter-apac" class="filter-demo-btn px-3 py-1.5 rounded-lg text-xs font-medium text-gray-400 hover:text-white transition-all">
-                                <span data-i18n="filter_apac">APAC</span>
-                            </button>
+                        <!-- Metric Toggle Selector -->
+                        <div class="flex items-center space-x-2 rtl:space-x-reverse bg-brand-dark p-1.5 rounded-2xl border border-brand-border self-start lg:self-auto">
+                            <span class="text-xs font-bold text-gray-400 px-2" data-i18n="sim_metric_label">Metric:</span>
+                            <button onclick="changeBiMetric('revenue')" id="metric-btn-revenue" class="metric-select-btn px-3 py-1.5 rounded-xl text-xs font-bold transition-all bg-brand-cyan text-black">Revenue</button>
+                            <button onclick="changeBiMetric('profit')" id="metric-btn-profit" class="metric-select-btn px-3 py-1.5 rounded-xl text-xs font-medium text-gray-400 hover:text-white transition-all">Profit Margin</button>
+                            <button onclick="changeBiMetric('volume')" id="metric-btn-volume" class="metric-select-btn px-3 py-1.5 rounded-xl text-xs font-medium text-gray-400 hover:text-white transition-all">Sales Volume</button>
                         </div>
                     </div>
 
-                    <!-- Live KPI Cards -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
-                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
-                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_revenue">Total Revenue</p>
-                            <h3 id="kpi-val-revenue" class="text-2xl font-extrabold text-white mt-1">$1,482,900</h3>
-                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
-                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +14.2% YoY
+                    <!-- SLICERS & FILTERS BAR -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-6 p-4 bg-brand-dark/90 rounded-2xl border border-brand-border">
+                        <!-- Slicer 1: Region -->
+                        <div>
+                            <label class="block text-xs font-bold text-brand-cyan uppercase mb-1.5" data-i18n="slicer_region">Region Slicer</label>
+                            <select id="slicer-region" onchange="runBiFilter()" class="w-full bg-brand-card border border-brand-border text-white text-xs rounded-xl px-3 py-2 focus:border-brand-cyan focus:outline-none">
+                                <option value="all">All Regions (Global)</option>
+                                <option value="north_america">North America</option>
+                                <option value="emea">EMEA (Europe, Middle East, Africa)</option>
+                                <option value="apac">Asia-Pacific (APAC)</option>
+                            </select>
+                        </div>
+
+                        <!-- Slicer 2: Customer Segment -->
+                        <div>
+                            <label class="block text-xs font-bold text-brand-cyan uppercase mb-1.5" data-i18n="slicer_segment">Customer Segment</label>
+                            <select id="slicer-segment" onchange="runBiFilter()" class="w-full bg-brand-card border border-brand-border text-white text-xs rounded-xl px-3 py-2 focus:border-brand-cyan focus:outline-none">
+                                <option value="all">All Segments</option>
+                                <option value="enterprise">Enterprise Corporate</option>
+                                <option value="smb">Small & Medium Business</option>
+                                <option value="government">Government & Public</option>
+                            </select>
+                        </div>
+
+                        <!-- Slicer 3: Year Period -->
+                        <div>
+                            <label class="block text-xs font-bold text-brand-cyan uppercase mb-1.5" data-i18n="slicer_year">Time Intelligence Period</label>
+                            <select id="slicer-year" onchange="runBiFilter()" class="w-full bg-brand-card border border-brand-border text-white text-xs rounded-xl px-3 py-2 focus:border-brand-cyan focus:outline-none">
+                                <option value="2025">FY 2025 (Full Year)</option>
+                                <option value="2026">FY 2026 (YTD)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- DYNAMIC KPI CARDS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+                        <div class="bg-brand-dark/60 border border-brand-border p-4 rounded-2xl">
+                            <span class="text-xs text-gray-400 font-medium" data-i18n="sim_kpi_1">Calculated Primary Metric</span>
+                            <h3 id="sim-val-1" class="text-2xl sm:text-3xl font-black text-white mt-1 font-mono">$1,845,200</h3>
+                            <span id="sim-growth-1" class="inline-flex items-center text-xs text-emerald-400 font-bold mt-2">
+                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +16.8% vs LY
                             </span>
                         </div>
 
-                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
-                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_profit">Net Profit Margin</p>
-                            <h3 id="kpi-val-profit" class="text-2xl font-extrabold text-brand-cyan mt-1">28.4%</h3>
-                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
-                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +3.1% Target
+                        <div class="bg-brand-dark/60 border border-brand-border p-4 rounded-2xl">
+                            <span class="text-xs text-gray-400 font-medium" data-i18n="sim_kpi_2">Average Order Value (AOV)</span>
+                            <h3 id="sim-val-2" class="text-2xl sm:text-3xl font-black text-brand-cyan mt-1 font-mono">$482.50</h3>
+                            <span id="sim-growth-2" class="inline-flex items-center text-xs text-brand-cyan font-bold mt-2">
+                                <i class="fa-solid fa-bullseye mr-1 rtl:ml-1"></i> Target Achieved
                             </span>
                         </div>
 
-                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
-                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_orders">Total Orders</p>
-                            <h3 id="kpi-val-orders" class="text-2xl font-extrabold text-white mt-1">12,450</h3>
-                            <span class="inline-flex items-center text-xs text-emerald-400 font-semibold mt-2">
-                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +8.6%
+                        <div class="bg-brand-dark/60 border border-brand-border p-4 rounded-2xl">
+                            <span class="text-xs text-gray-400 font-medium" data-i18n="sim_kpi_3">Total Active Accounts</span>
+                            <h3 id="sim-val-3" class="text-2xl sm:text-3xl font-black text-white mt-1 font-mono">1,420</h3>
+                            <span id="sim-growth-3" class="inline-flex items-center text-xs text-emerald-400 font-bold mt-2">
+                                <i class="fa-solid fa-arrow-up mr-1 rtl:ml-1"></i> +8.4% YoY
                             </span>
                         </div>
 
-                        <div class="bg-brand-dark/70 border border-brand-border p-4 rounded-2xl">
-                            <p class="text-xs text-gray-400 font-medium" data-i18n="kpi_aov">Avg Order Value</p>
-                            <h3 id="kpi-val-aov" class="text-2xl font-extrabold text-brand-purple mt-1">$119.10</h3>
-                            <span class="inline-flex items-center text-xs text-brand-cyan font-semibold mt-2">
-                                <i class="fa-solid fa-check mr-1 rtl:ml-1"></i> Optimal
+                        <div class="bg-brand-dark/60 border border-brand-border p-4 rounded-2xl">
+                            <span class="text-xs text-gray-400 font-medium" data-i18n="sim_kpi_4">DAX Calculation Time</span>
+                            <h3 id="sim-val-4" class="text-2xl sm:text-3xl font-black text-brand-purple mt-1 font-mono">12 ms</h3>
+                            <span class="inline-flex items-center text-xs text-purple-400 font-bold mt-2">
+                                <i class="fa-solid fa-bolt mr-1 rtl:ml-1"></i> Highly Optimized
                             </span>
                         </div>
                     </div>
 
-                    <!-- Charts Grid -->
+                    <!-- CHARTS DISPLAY AREA -->
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                        <!-- Revenue Trend Chart -->
-                        <div class="lg:col-span-8 bg-brand-dark/80 border border-brand-border p-5 rounded-2xl">
+                        <!-- Main Time Series Chart -->
+                        <div class="lg:col-span-8 bg-brand-dark/90 border border-brand-border p-5 rounded-2xl">
                             <div class="flex items-center justify-between mb-4">
-                                <h4 class="text-sm font-bold text-gray-200" data-i18n="chart_trend_title">Monthly Revenue Performance vs Forecast</h4>
-                                <span class="text-xs text-gray-400 font-mono">2025 - 2026</span>
+                                <h4 class="text-xs sm:text-sm font-bold text-gray-200" data-i18n="sim_chart1_title">Performance Trend & Moving Average</h4>
+                                <span class="text-[10px] text-brand-cyan font-mono uppercase">Dynamic Chart.JS Render</span>
                             </div>
-                            <div class="relative h-64 w-full">
-                                <canvas id="trendChart"></canvas>
+                            <div class="relative h-64 sm:h-72 w-full">
+                                <canvas id="biSimMainChart"></canvas>
                             </div>
                         </div>
 
-                        <!-- Category Doughnut Chart -->
-                        <div class="lg:col-span-4 bg-brand-dark/80 border border-brand-border p-5 rounded-2xl">
+                        <!-- Segment Doughnut Chart -->
+                        <div class="lg:col-span-4 bg-brand-dark/90 border border-brand-border p-5 rounded-2xl">
                             <div class="flex items-center justify-between mb-4">
-                                <h4 class="text-sm font-bold text-gray-200" data-i18n="chart_category_title">Revenue by Product Line</h4>
-                                <i class="fa-solid fa-pie-chart text-brand-cyan"></i>
+                                <h4 class="text-xs sm:text-sm font-bold text-gray-200" data-i18n="sim_chart2_title">Product Line Distribution</h4>
+                                <i class="fa-solid fa-chart-pie text-brand-cyan"></i>
                             </div>
-                            <div class="relative h-64 w-full flex items-center justify-center">
-                                <canvas id="categoryChart"></canvas>
+                            <div class="relative h-64 sm:h-72 w-full flex items-center justify-center">
+                                <canvas id="biSimPieChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -472,139 +405,177 @@
             </div>
         </section>
 
-        <section id="projects" class="py-20 bg-brand-dark/40 border-t border-brand-border/50">
+        <!-- Skills & Tech Matrix -->
+        <section id="skills" class="py-20 bg-brand-dark/60 border-t border-brand-border/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-2">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="skills_subtitle">Technical Proficiency</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="skills_title">Data Analytics & BI Competency Matrix</p>
+                    <p class="text-slate-400 text-sm" data-i18n="skills_desc">5+ Years mastering data modeling, advanced analytics, SQL ETL, and Power BI visualization.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Skills Category Bars -->
+                    <div class="lg:col-span-7 space-y-5">
+                        
+                        <!-- Skill Item 1 -->
+                        <div class="bg-brand-card p-4 rounded-2xl border border-brand-border space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-white flex items-center gap-2"><i class="fa-solid fa-chart-pie text-brand-cyan"></i> Power BI, DAX & Power Query</span>
+                                <span class="text-brand-cyan font-mono">98%</span>
+                            </div>
+                            <div class="w-full bg-brand-dark h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-brand-cyan to-brand-blue h-full rounded-full w-[98%]"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-400" data-i18n="skill_detail_pbi">Star Schema Modeling, Time Intelligence DAX, RLS Policies, Calculation Groups, Tabular Editor.</p>
+                        </div>
+
+                        <!-- Skill Item 2 -->
+                        <div class="bg-brand-card p-4 rounded-2xl border border-brand-border space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-white flex items-center gap-2"><i class="fa-solid fa-database text-brand-blue"></i> SQL & Relational Databases</span>
+                                <span class="text-brand-blue font-mono">92%</span>
+                            </div>
+                            <div class="w-full bg-brand-dark h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-brand-blue to-brand-purple h-full rounded-full w-[92%]"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-400" data-i18n="skill_detail_sql">PostgreSQL, MS SQL Server, Window Functions, CTEs, Complex Joins, Query Optimization.</p>
+                        </div>
+
+                        <!-- Skill Item 3 -->
+                        <div class="bg-brand-card p-4 rounded-2xl border border-brand-border space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-white flex items-center gap-2"><i class="fa-solid fa-file-excel text-emerald-400"></i> Advanced Excel & Financial Modeling</span>
+                                <span class="text-emerald-400 font-mono">95%</span>
+                            </div>
+                            <div class="w-full bg-brand-dark h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-emerald-400 to-teal-500 h-full rounded-full w-[95%]"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-400" data-i18n="skill_detail_excel">Power Pivot, Dynamic Arrays, Financial Variance Analysis, VBA Macro Automation.</p>
+                        </div>
+
+                        <!-- Skill Item 4 -->
+                        <div class="bg-brand-card p-4 rounded-2xl border border-brand-border space-y-2">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-white flex items-center gap-2"><i class="fa-solid fa-code text-purple-400"></i> Python Analytics & ETL Automation</span>
+                                <span class="text-purple-400 font-mono">85%</span>
+                            </div>
+                            <div class="w-full bg-brand-dark h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-purple-400 to-pink-500 h-full rounded-full w-[85%]"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-400" data-i18n="skill_detail_py">Pandas, NumPy, Matplotlib, Automated Scheduled Data Extraction & Clean Pipelines.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Interactive Skill Radar Chart -->
+                    <div class="lg:col-span-5 bg-brand-card p-6 rounded-3xl border border-brand-border text-center">
+                        <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider mb-4" data-i18n="radar_title">Competency Radar Balance</h4>
+                        <div class="relative h-64 sm:h-80 w-full">
+                            <canvas id="skillsRadarChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Showcase -->
+        <section id="projects" class="py-20 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
                     <div>
-                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="projects_subtitle">Featured Deliverables</h2>
-                        <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="projects_title">Dashboard Showcase</p>
+                        <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="projects_subtitle">Selected Deliverables</h2>
+                        <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="projects_title">Featured Case Studies</p>
                     </div>
 
-                    <!-- Filter Tags -->
+                    <!-- Category Filter Tabs -->
                     <div class="flex flex-wrap gap-2 mt-4 md:mt-0">
-                        <button onclick="filterProjects('all')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-cyan text-black" data-filter="all">All</button>
-                        <button onclick="filterProjects('powerbi')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="powerbi">Power BI</button>
-                        <button onclick="filterProjects('sql')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="sql">SQL Analytics</button>
-                        <button onclick="filterProjects('finance')" class="project-filter-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="finance">Financial Dashboards</button>
+                        <button onclick="filterProjects('all')" class="proj-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-brand-cyan text-black" data-filter="all">All Projects</button>
+                        <button onclick="filterProjects('powerbi')" class="proj-tab-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="powerbi">Power BI</button>
+                        <button onclick="filterProjects('sql')" class="proj-tab-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="sql">SQL & ETL</button>
+                        <button onclick="filterProjects('finance')" class="proj-tab-btn px-4 py-2 rounded-xl text-xs font-medium text-gray-400 hover:text-white bg-brand-card border border-brand-border transition-all" data-filter="finance">Financials</button>
                     </div>
                 </div>
 
                 <!-- Projects Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Project Card 1 -->
-                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="powerbi finance">
-                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                            <!-- Visual Graphic Representation -->
-                            <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/40 via-blue-900/20 to-slate-900 flex items-center justify-center p-6">
-                                <div class="w-full h-full border border-cyan-500/20 rounded-xl bg-brand-dark/90 p-4 space-y-3">
-                                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-                                        <span class="text-xs font-bold text-cyan-400">Executive Sales & Financial KPI</span>
-                                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                                    </div>
-                                    <div class="grid grid-cols-3 gap-2">
-                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Rev: $2.4M</div>
-                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Margin: 34%</div>
-                                        <div class="bg-gray-800/60 p-2 rounded text-[10px] text-gray-300">Growth: +18%</div>
-                                    </div>
-                                    <div class="h-12 bg-cyan-950/30 rounded border border-cyan-800/30 flex items-end p-1 space-x-1">
-                                        <div class="w-1/6 bg-cyan-500 h-1/2 rounded-t"></div>
-                                        <div class="w-1/6 bg-cyan-500 h-3/4 rounded-t"></div>
-                                        <div class="w-1/6 bg-cyan-500 h-2/3 rounded-t"></div>
-                                        <div class="w-1/6 bg-cyan-500 h-full rounded-t"></div>
-                                        <div class="w-1/6 bg-cyan-500 h-4/5 rounded-t"></div>
-                                        <div class="w-1/6 bg-cyan-400 h-full rounded-t animate-pulse"></div>
-                                    </div>
-                                </div>
+                    <!-- Case Study 1 -->
+                    <div class="project-item bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card flex flex-col justify-between" data-category="powerbi finance">
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-cyan-950/80 text-brand-cyan border border-cyan-800/50">POWER BI + DAX</span>
+                                <span class="text-xs font-bold text-emerald-400 font-mono">+28% ROI</span>
                             </div>
-                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-cyan-400 border border-cyan-500/30 font-semibold">Power BI + DAX</span>
+                            <h3 class="text-xl font-bold text-white" data-i18n="cs1_title">Enterprise Executive Sales & Financial Dashboard</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed" data-i18n="cs1_desc">A multi-region financial reporting system replacing legacy manual Excel reports for 120+ corporate users with dynamic currency conversion and DAX target tracking.</p>
+                            
+                            <div class="space-y-1.5 pt-2">
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="cs1_feat1">Dynamic Time Intelligence DAX</span></div>
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-brand-cyan"></i> <span data-i18n="cs1_feat2">Multi-Role Dynamic RLS Security</span></div>
+                            </div>
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p1_title">Executive Global Sales Dashboard</h3>
-                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p1_desc">Comprehensive multi-currency reporting dashboard built for corporate executives, featuring time-intelligence dynamic DAX measures, target variance tracking, and RLS.</p>
-                            </div>
-                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
-                                <div class="flex gap-1.5 flex-wrap">
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">DAX</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Star Schema</span>
-                                </div>
-                                <button onclick="openProjectModal('p1')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
-                                    <span data-i18n="btn_view_details">Details</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                </button>
-                            </div>
+
+                        <div class="p-6 pt-0 border-t border-brand-border/60 mt-4 flex items-center justify-between">
+                            <span class="text-[11px] text-gray-400 font-mono">15+ Data Tables</span>
+                            <button onclick="openCaseStudyModal('cs1')" class="px-4 py-2 rounded-xl bg-brand-dark border border-brand-border hover:border-brand-cyan text-xs font-bold text-brand-cyan transition-all flex items-center gap-1.5">
+                                <span data-i18n="btn_case_study">Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Project Card 2 -->
-                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="sql">
-                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-blue-900/40 via-purple-900/20 to-slate-900 flex items-center justify-center p-6">
-                                <div class="w-full h-full border border-blue-500/20 rounded-xl bg-brand-dark/90 p-4 font-mono text-[11px] text-blue-300 space-y-1.5 overflow-hidden">
-                                    <p class="text-purple-400">WITH CustomerRetention AS (</p>
-                                    <p class="pl-3">SELECT customer_id, COUNT(order_id) AS total_orders</p>
-                                    <p class="pl-3">FROM sales_fact GROUP BY customer_id</p>
-                                    <p class="text-purple-400">)</p>
-                                    <p class="text-emerald-400">SELECT * FROM CustomerRetention WHERE total_orders &gt; 5;</p>
-                                </div>
+                    <!-- Case Study 2 -->
+                    <div class="project-item bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card flex flex-col justify-between" data-category="sql">
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-blue-950/80 text-brand-blue border border-blue-800/50">SQL & COHORT</span>
+                                <span class="text-xs font-bold text-emerald-400 font-mono">-18% Churn</span>
                             </div>
-                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-blue-400 border border-blue-500/30 font-semibold">SQL Analytics</span>
+                            <h3 class="text-xl font-bold text-white" data-i18n="cs2_title">Customer Retention & Churn SQL Pipeline</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed" data-i18n="cs2_desc">Built a high-performance PostgreSQL analytics engine evaluating customer purchasing cohorts, calculating lifetime value (LTV), and predicting churn behavior.</p>
+                            
+                            <div class="space-y-1.5 pt-2">
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-brand-blue"></i> <span data-i18n="cs2_feat1">Advanced Window Functions & CTEs</span></div>
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-brand-blue"></i> <span data-i18n="cs2_feat2">Automated Daily ETL Pipelines</span></div>
+                            </div>
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p2_title">Customer Churn & Cohort Analysis</h3>
-                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p2_desc">Advanced SQL analytics pipeline analyzing customer retention cohorts, lifetime value (LTV), purchase frequencies, and predictive churn indicators.</p>
-                            </div>
-                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
-                                <div class="flex gap-1.5 flex-wrap">
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">T-SQL</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Cohort Analysis</span>
-                                </div>
-                                <button onclick="openProjectModal('p2')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
-                                    <span data-i18n="btn_view_details">Details</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                </button>
-                            </div>
+
+                        <div class="p-6 pt-0 border-t border-brand-border/60 mt-4 flex items-center justify-between">
+                            <span class="text-[11px] text-gray-400 font-mono">2M+ Records</span>
+                            <button onclick="openCaseStudyModal('cs2')" class="px-4 py-2 rounded-xl bg-brand-dark border border-brand-border hover:border-brand-cyan text-xs font-bold text-brand-cyan transition-all flex items-center gap-1.5">
+                                <span data-i18n="btn_case_study">Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- Project Card 3 -->
-                    <div class="project-card bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card transition-all duration-300 flex flex-col" data-category="powerbi">
-                        <div class="relative group h-48 bg-slate-900 overflow-hidden flex items-center justify-center">
-                            <div class="absolute inset-0 bg-gradient-to-tr from-purple-900/40 via-cyan-900/20 to-slate-900 flex items-center justify-center p-6">
-                                <div class="w-full h-full border border-purple-500/20 rounded-xl bg-brand-dark/90 p-4 space-y-2">
-                                    <div class="flex justify-between items-center text-xs text-purple-300 border-b border-gray-800 pb-2">
-                                        <span>Supply Chain & Inventory Tracker</span>
-                                        <i class="fa-solid fa-truck"></i>
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-2 text-[10px] text-gray-300">
-                                        <div class="bg-gray-800/80 p-2 rounded">Stock Turnover: 8.4x</div>
-                                        <div class="bg-gray-800/80 p-2 rounded">Out-of-Stock: 1.2%</div>
-                                    </div>
-                                    <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden mt-3">
-                                        <div class="bg-purple-500 h-full w-4/5"></div>
-                                    </div>
-                                </div>
+                    <!-- Case Study 3 -->
+                    <div class="project-item bg-brand-card border border-brand-border rounded-2xl overflow-hidden glow-card flex flex-col justify-between" data-category="powerbi finance">
+                        <div class="p-6 space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-md text-[10px] font-mono font-bold bg-purple-950/80 text-purple-300 border border-purple-800/50">SUPPLY CHAIN</span>
+                                <span class="text-xs font-bold text-emerald-400 font-mono">Zero Stockouts</span>
                             </div>
-                            <span class="absolute top-3 right-3 bg-brand-dark/80 backdrop-blur-md px-2.5 py-1 rounded-md text-[11px] text-purple-400 border border-purple-500/30 font-semibold">Supply Chain</span>
+                            <h3 class="text-xl font-bold text-white" data-i18n="cs3_title">Supply Chain & Inventory Stock Optimizer</h3>
+                            <p class="text-slate-400 text-xs leading-relaxed" data-i18n="cs3_desc">Interactive warehouse management system tracking lead times, safety stock buffer levels, stockout risks, and supplier performance metrics.</p>
+                            
+                            <div class="space-y-1.5 pt-2">
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-purple-400"></i> <span data-i18n="cs3_feat1">Automated Stock Alert Triggers</span></div>
+                                <div class="flex items-center text-xs text-gray-300 gap-2"><i class="fa-solid fa-check text-purple-400"></i> <span data-i18n="cs3_feat2">Cross-Functional Logistics Views</span></div>
+                            </div>
                         </div>
-                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-white mb-2" data-i18n="p3_title">Supply Chain & Warehouse Optimization</h3>
-                                <p class="text-gray-400 text-xs leading-relaxed" data-i18n="p3_desc">Interactive inventory dashboard optimizing safety stock levels, vendor lead times, stockout risks, and order fulfillment throughput.</p>
-                            </div>
-                            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
-                                <div class="flex gap-1.5 flex-wrap">
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Power BI</span>
-                                    <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Inventory Ops</span>
-                                </div>
-                                <button onclick="openProjectModal('p3')" class="text-xs font-bold text-brand-cyan hover:underline flex items-center gap-1">
-                                    <span data-i18n="btn_view_details">Details</span>
-                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                                </button>
-                            </div>
+
+                        <div class="p-6 pt-0 border-t border-brand-border/60 mt-4 flex items-center justify-between">
+                            <span class="text-[11px] text-gray-400 font-mono">5 Warehouses</span>
+                            <button onclick="openCaseStudyModal('cs3')" class="px-4 py-2 rounded-xl bg-brand-dark border border-brand-border hover:border-brand-cyan text-xs font-bold text-brand-cyan transition-all flex items-center gap-1.5">
+                                <span data-i18n="btn_case_study">Read Case Study</span>
+                                <i class="fa-solid fa-arrow-right text-[10px] rtl:rotate-180"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -612,69 +583,164 @@
             </div>
         </section>
 
+        <!-- Interactive Project Scope & ROI Estimator -->
+        <section id="estimator" class="py-20 bg-brand-dark/80 border-t border-brand-border/60 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-10 shadow-2xl">
+                    <div class="max-w-3xl mx-auto text-center space-y-3 mb-10">
+                        <span class="text-xs font-bold text-brand-cyan uppercase tracking-widest" data-i18n="est_badge">Interactive Calculator</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="est_title">Estimate Your BI Project Timeline & Budget</h2>
+                        <p class="text-slate-400 text-xs sm:text-sm" data-i18n="est_desc">Select your data requirements to calculate an estimated development effort, delivery timeline, and investment range.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                        
+                        <!-- Controls Column -->
+                        <div class="lg:col-span-7 space-y-6">
+                            
+                            <!-- Question 1: Data Sources -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-white uppercase" data-i18n="est_q1">1. Number of Data Sources</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <input type="radio" name="est_sources" id="src_1" value="1" class="hidden custom-radio" checked onchange="calculateProjectScope()">
+                                    <label for="src_1" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">1 Source (Excel/CSV)</label>
+
+                                    <input type="radio" name="est_sources" id="src_2" value="2" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="src_2" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">2-3 (SQL + Web API)</label>
+
+                                    <input type="radio" name="est_sources" id="src_3" value="3" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="src_3" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">4+ Multi-System ERP</label>
+                                </div>
+                            </div>
+
+                            <!-- Question 2: DAX & Logic Complexity -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-white uppercase" data-i18n="est_q2">2. DAX & Analytics Complexity</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <input type="radio" name="est_dax" id="dax_basic" value="1" class="hidden custom-radio" checked onchange="calculateProjectScope()">
+                                    <label for="dax_basic" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">Standard KPIs & Ratios</label>
+
+                                    <input type="radio" name="est_dax" id="dax_med" value="2" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="dax_med" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">Time Intelligence & Dynamic RLS</label>
+
+                                    <input type="radio" name="est_dax" id="dax_high" value="3" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="dax_high" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">Predictive / Cohort Calculations</label>
+                                </div>
+                            </div>
+
+                            <!-- Question 3: Number of Dashboard Pages -->
+                            <div class="space-y-2">
+                                <label class="block text-xs font-bold text-white uppercase" data-i18n="est_q3">3. Dashboard Pages Needed</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <input type="radio" name="est_pages" id="page_1" value="1" class="hidden custom-radio" checked onchange="calculateProjectScope()">
+                                    <label for="page_1" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">1 Executive Page</label>
+
+                                    <input type="radio" name="est_pages" id="page_3" value="2" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="page_3" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">2 - 4 Pages</label>
+
+                                    <input type="radio" name="est_pages" id="page_5" value="3" class="hidden custom-radio" onchange="calculateProjectScope()">
+                                    <label for="page_5" class="p-3 bg-brand-dark border border-brand-border rounded-xl text-xs font-semibold text-center cursor-pointer transition-all">5+ Complete Suite</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Results Summary Box -->
+                        <div class="lg:col-span-5 bg-brand-dark/90 p-6 rounded-2xl border border-brand-border space-y-6 text-center lg:text-left rtl:lg:text-right">
+                            <h3 class="text-xs font-bold text-brand-cyan uppercase tracking-wider" data-i18n="est_res_title">Estimated Project Parameters</h3>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <span class="text-xs text-gray-400 block" data-i18n="est_res_time">Estimated Delivery Time</span>
+                                    <p id="est-time-output" class="text-2xl font-black text-white font-mono">3 - 5 Business Days</p>
+                                </div>
+
+                                <div>
+                                    <span class="text-xs text-gray-400 block" data-i18n="est_res_effort">Development Effort Hours</span>
+                                    <p id="est-hours-output" class="text-2xl font-black text-brand-blue font-mono">20 - 30 Hours</p>
+                                </div>
+
+                                <div class="pt-2 border-t border-brand-border">
+                                    <span class="text-xs text-gray-400 block" data-i18n="est_res_budget">Estimated Investment Range</span>
+                                    <p id="est-budget-output" class="text-3xl font-black text-brand-cyan font-mono">$400 - $600</p>
+                                </div>
+                            </div>
+
+                            <a href="#contact" onclick="prefillContactForm()" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center space-x-2 rtl:space-x-reverse text-xs uppercase tracking-wider">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span data-i18n="est_btn_book">Book This Scope</span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience Timeline -->
         <section id="experience" class="py-20 bg-brand-dark relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="exp_subtitle">Career Path</h2>
-                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="exp_title">5+ Years Professional Journey</p>
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="exp_subtitle">Professional Milestones</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-white mt-1" data-i18n="exp_title">5+ Years Track Record</p>
                 </div>
 
-                <!-- Timeline Container -->
-                <div class="max-w-4xl mx-auto relative border-l-2 border-brand-border/80 rtl:border-l-0 rtl:border-r-2 space-y-10 pl-6 rtl:pl-0 rtl:pr-6">
+                <div class="max-w-4xl mx-auto relative border-l-2 border-brand-border rtl:border-l-0 rtl:border-r-2 space-y-10 pl-6 rtl:pl-0 rtl:pr-6">
                     
-                    <!-- Item 1 -->
+                    <!-- Job 1 -->
                     <div class="relative group">
                         <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-cyan ring-4 ring-brand-dark"></div>
-                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card">
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                                 <div>
-                                    <h3 class="text-xl font-bold text-white" data-i18n="job1_role">Senior Data Analyst & Power BI Lead</h3>
-                                    <p class="text-brand-cyan text-sm font-medium">Enterprise Data Solutions</p>
+                                    <h3 class="text-lg font-bold text-white" data-i18n="job1_role">Senior Data Analyst & Power BI Lead</h3>
+                                    <p class="text-brand-cyan text-xs font-bold">Enterprise Data Solutions Ltd.</p>
                                 </div>
-                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2022 - Present</span>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-slate-300 w-fit">2022 - Present</span>
                             </div>
-                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                                <li data-i18n="job1_l1">Architected centralized Power BI reporting ecosystems serving over 150+ business stakeholders.</li>
-                                <li data-i18n="job1_l2">Reduced query execution time by 45% through Star Schema modeling and optimized DAX calculations.</li>
-                                <li data-i18n="job1_l3">Implemented Row-Level Security (RLS) policies to safeguard sensitive financial and HR datasets.</li>
+                            <ul class="text-slate-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job1_l1">Architected enterprise Power BI reporting ecosystems serving over 180+ active business decision-makers.</li>
+                                <li data-i18n="job1_l2">Optimized complex DAX measures and Star Schema models, achieving a 45% reduction in query execution time.</li>
+                                <li data-i18n="job1_l3">Enforced multi-level Row-Level Security (RLS) protecting sensitive corporate financial assets.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Item 2 -->
+                    <!-- Job 2 -->
                     <div class="relative group">
                         <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-blue ring-4 ring-brand-dark"></div>
-                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card">
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                                 <div>
-                                    <h3 class="text-xl font-bold text-white" data-i18n="job2_role">Data Analyst & BI Specialist</h3>
-                                    <p class="text-brand-blue text-sm font-medium">Commercial Analytics Corp</p>
+                                    <h3 class="text-lg font-bold text-white" data-i18n="job2_role">Data Analyst & BI Specialist</h3>
+                                    <p class="text-brand-blue text-xs font-bold">Commercial Analytics Corp</p>
                                 </div>
-                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2020 - 2022</span>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-slate-300 w-fit">2020 - 2022</span>
                             </div>
-                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                                <li data-i18n="job2_l1">Designed end-to-end automated pipelines combining SQL Server, Power Query, and automated Excel reporting.</li>
-                                <li data-i18n="job2_l2">Created predictive sales forecasting models that improved quarterly inventory accuracy by 20%.</li>
-                                <li data-i18n="job2_l3">Trained 30+ team members on Power BI self-service reporting best practices.</li>
+                            <ul class="text-slate-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job2_l1">Built automated SQL Server & Power Query ETL pipelines reducing manual reporting hours by 15 hours weekly.</li>
+                                <li data-i18n="job2_l2">Developed inventory forecasting dashboards improving stockout risk management by 20%.</li>
                             </ul>
                         </div>
                     </div>
 
-                    <!-- Item 3 -->
+                    <!-- Job 3 -->
                     <div class="relative group">
                         <div class="absolute -left-[31px] rtl:-right-[31px] top-1 w-4 h-4 rounded-full bg-brand-purple ring-4 ring-brand-dark"></div>
-                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card transition-all">
+                        <div class="bg-brand-card border border-brand-border p-6 rounded-2xl glow-card">
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                                 <div>
-                                    <h3 class="text-xl font-bold text-white" data-i18n="job3_role">Junior Business Intelligence Analyst</h3>
-                                    <p class="text-brand-purple text-sm font-medium">Business Insights Consultancy</p>
+                                    <h3 class="text-lg font-bold text-white" data-i18n="job3_role">Junior Business Intelligence Analyst</h3>
+                                    <p class="text-brand-purple text-xs font-bold">Insights Consultancy Group</p>
                                 </div>
-                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-gray-300 w-fit">2019 - 2020</span>
+                                <span class="text-xs font-mono px-3 py-1 bg-brand-dark rounded-full border border-brand-border text-slate-300 w-fit">2019 - 2020</span>
                             </div>
-                            <ul class="text-gray-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
-                                <li data-i18n="job3_l1">Cleaned, transformed, and normalized raw operational data for executive dashboard integration.</li>
-                                <li data-i18n="job3_l2">Developed automated Google Apps Script solutions to streamline daily spreadsheet reporting.</li>
+                            <ul class="text-slate-400 text-xs sm:text-sm space-y-2 list-disc list-inside leading-relaxed">
+                                <li data-i18n="job3_l1">Cleaned, transformed, and validated raw transactional databases for executive dashboard integration.</li>
+                                <li data-i18n="job3_l2">Created Google Apps Script & Excel VBA macros to automate operational data workflows.</li>
                             </ul>
                         </div>
                     </div>
@@ -683,44 +749,44 @@
             </div>
         </section>
 
-        <section id="contact" class="py-20 bg-brand-dark/80 border-t border-brand-border/50 relative">
+        <!-- Contact & Call To Action -->
+        <section id="contact" class="py-20 bg-brand-dark/90 border-t border-brand-border/60 relative">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     
-                    <!-- Info Column -->
+                    <!-- Direct Info Column -->
                     <div class="lg:col-span-5 space-y-6">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="contact_subtitle">Let's Connect</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="contact_title">Ready to Unlock Insights From Your Data?</h2>
-                        <p class="text-gray-400 text-sm leading-relaxed" data-i18n="contact_desc">Looking to build interactive Power BI dashboards, optimize existing DAX queries, or automate reporting workflows? Send a message and let's discuss your project.</p>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-cyan" data-i18n="contact_subtitle">Direct Communication</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="contact_title">Let's Discuss Your Data Analytics Project</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="contact_desc">Have raw datasets ready for Power BI or need DAX query speed optimization? Get in touch directly for consultation.</p>
 
-                        <!-- Direct Contact List -->
-                        <div class="space-y-4 pt-4">
-                            <a href="mailto:mohamed.amin@example.com" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-brand-cyan transition-colors group">
-                                <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-brand-cyan flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                        <div class="space-y-4 pt-2">
+                            <a href="mailto:mohamed.amin.data@gmail.com" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-2xl hover:border-brand-cyan transition-colors group">
+                                <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-brand-cyan flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                                     <i class="fa-solid fa-envelope"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">Email Direct</p>
+                                    <p class="text-[11px] text-gray-400 font-semibold">Direct Email</p>
                                     <p class="text-sm font-bold text-white">mohamed.amin.data@gmail.com</p>
                                 </div>
                             </a>
 
-                            <a href="https://linkedin.com" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-brand-blue transition-colors group">
-                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-brand-blue flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <a href="https://linkedin.com" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-2xl hover:border-brand-blue transition-colors group">
+                                <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-brand-blue flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                                     <i class="fa-brands fa-linkedin-in"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">LinkedIn Profile</p>
+                                    <p class="text-[11px] text-gray-400 font-semibold">LinkedIn Profile</p>
                                     <p class="text-sm font-bold text-white">linkedin.com/in/mohamed-amin</p>
                                 </div>
                             </a>
 
-                            <a href="https://wa.me/" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-xl hover:border-emerald-500 transition-colors group">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                            <a href="https://wa.me/" target="_blank" class="flex items-center space-x-4 rtl:space-x-reverse p-4 bg-brand-card border border-brand-border rounded-2xl hover:border-emerald-500 transition-colors group">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                                     <i class="fa-brands fa-whatsapp"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">WhatsApp / Call</p>
+                                    <p class="text-[11px] text-gray-400 font-semibold">Instant WhatsApp Chat</p>
                                     <p class="text-sm font-bold text-white">+20 100 000 0000</p>
                                 </div>
                             </a>
@@ -729,264 +795,287 @@
 
                     <!-- Contact Form -->
                     <div class="lg:col-span-7 bg-brand-card border border-brand-border p-8 rounded-3xl relative">
-                        <form id="portfolio-contact-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <form id="contact-form" onsubmit="submitContactForm(event)" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_name">Your Name *</label>
-                                    <input type="text" id="form-input-name" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="e.g. Ahmed Ali">
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="form_name">Your Name *</label>
+                                    <input type="text" id="input-name" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-xs text-white focus:outline-none transition-colors" placeholder="e.g. Ahmed Hassan">
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_email">Your Email *</label>
-                                    <input type="email" id="form-input-email" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="e.g. ahmed@company.com">
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="form_email">Your Email *</label>
+                                    <input type="email" id="input-email" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-xs text-white focus:outline-none transition-colors" placeholder="e.g. ahmed@company.com">
                                 </div>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_subject">Project Type / Subject *</label>
-                                <select id="form-input-subject" class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors">
-                                    <option value="Power BI Dashboard Development">Power BI Dashboard Development</option>
-                                    <option value="SQL Data Analysis & ETL">SQL Data Analysis & ETL</option>
-                                    <option value="DAX Performance Optimization">DAX Performance Optimization</option>
-                                    <option value="Full Data Analytics Consultation">Full Data Analytics Consultation</option>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="form_subject">Project Type / Requirement *</label>
+                                <select id="input-subject" class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-xs text-white focus:outline-none transition-colors">
+                                    <option value="Power BI Executive Dashboard">Power BI Executive Dashboard</option>
+                                    <option value="DAX Query Speed Optimization">DAX Query Speed Optimization</option>
+                                    <option value="SQL Data ETL & Pipeline">SQL Data ETL & Pipeline</option>
+                                    <option value="Full BI Analytics Consultation">Full BI Analytics Consultation</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-xs font-semibold text-gray-300 mb-2" data-i18n="form_message">Message *</label>
-                                <textarea id="form-input-message" rows="4" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-colors" placeholder="Describe your data requirements..."></textarea>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2" data-i18n="form_message">Project Scope & Details *</label>
+                                <textarea id="input-message" rows="4" required class="w-full bg-brand-dark border border-brand-border focus:border-brand-cyan rounded-xl px-4 py-3 text-xs text-white focus:outline-none transition-colors" placeholder="Describe your data sources and dashboard requirements..."></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center space-x-2 rtl:space-x-reverse">
+                            <button type="submit" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-cyan to-brand-blue text-slate-950 hover:shadow-lg hover:shadow-cyan-500/25 transition-all flex items-center justify-center space-x-2 rtl:space-x-reverse text-xs uppercase tracking-wider">
                                 <i class="fa-solid fa-paper-plane"></i>
                                 <span data-i18n="btn_send">Send Message</span>
                             </button>
                         </form>
 
-                        <!-- Form Feedback Message -->
-                        <div id="form-response-msg" class="hidden mt-4 p-4 rounded-xl text-xs font-semibold text-center"></div>
+                        <div id="form-status" class="hidden mt-4 p-4 rounded-xl text-xs font-bold text-center"></div>
                     </div>
 
                 </div>
             </div>
         </section>
+
     </main>
 
+    <!-- Footer -->
     <footer class="bg-brand-dark border-t border-brand-border py-8 text-xs text-gray-500 text-center">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© <span id="current-year"></span> Mohamed Amin. All rights reserved.</p>
-            <p data-i18n="footer_tagline">Built for Data Analytics & Power BI Excellence</p>
+            <p>© <span id="year-copy"></span> Mohamed Amin. All rights reserved.</p>
+            <p data-i18n="footer_tagline">Built for Enterprise Data Analytics & Power BI Excellence</p>
         </div>
     </footer>
 
-    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- Case Study Dynamic Modal -->
+    <div id="case-study-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-brand-card border border-brand-border max-w-2xl w-full rounded-3xl p-6 sm:p-8 space-y-6 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeProjectModal()" class="absolute top-5 right-5 rtl:right-auto rtl:left-5 text-gray-400 hover:text-white text-xl">
+            <button onclick="closeCaseStudyModal()" class="absolute top-5 right-5 rtl:right-auto rtl:left-5 text-gray-400 hover:text-white text-xl">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-            <div id="modal-content">
-                <!-- Injected dynamically via JS -->
+            <div id="modal-body">
+                <!-- Dynamically populated -->
             </div>
         </div>
     </div>
 
     <script>
-        // Set dynamic current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.getElementById('year-copy').textContent = new Date().getFullYear();
 
-        // Translation Dictionary
-        const translations = {
+        // Comprehensive English & Arabic Translations
+        const i18n = {
             en: {
+                nav_role: "Data & Power BI Specialist",
                 nav_about: "About",
-                nav_skills: "Skills & Tools",
-                nav_demo: "Live Dashboard",
-                nav_projects: "Projects",
+                nav_dashboard: "Live BI Simulator",
+                nav_skills: "Skills Matrix",
+                nav_projects: "Case Studies",
+                nav_estimator: "ROI Estimator",
                 nav_exp: "Experience",
-                nav_contact: "Contact",
+                nav_contact: "Contact Me",
                 hire_me: "Get In Touch",
-                
-                hero_badge: "5+ Years Transforming Business Data",
+
+                hero_badge: "5+ Years Senior Data Analytics & BI Experience",
                 hero_title_prefix: "Hello, I'm",
                 hero_name: "Mohamed Amin",
-                hero_subtitle: "Senior Data Analyst & Power BI Specialist",
-                hero_desc: "Turning complex datasets into intuitive, high-impact business decisions. Expert in Power BI dashboard design, advanced DAX modeling, SQL query optimization, star schema architecture, and automated analytics solutions.",
+                hero_subtitle: "Senior Data Analyst & Enterprise Power BI Architect",
+                hero_desc: "Transforming complex multi-source enterprise data into actionable executive dashboards. Expert in high-performance DAX optimization, Star Schema modeling, automated ETL pipelines, SQL Server architectures, and row-level security (RLS).",
                 stat_exp: "Years Experience",
                 stat_dashboards: "Dashboards Built",
+                stat_dax: "DAX Speedup",
                 stat_accuracy: "Data Accuracy",
-                btn_projects: "Explore Projects",
-                btn_demo: "Live Analytics Demo",
-                card_status: "● Available for Projects",
-                hero_card_m1: "DAX Performance",
-                hero_card_m2: "Data Security",
-                hero_card_desc: "Designed for high-performance enterprise reporting and seamless cross-filtering.",
+                btn_demo: "Test Live BI Simulator",
+                btn_estimator: "Calculate Project Scope",
+                card_status: "● Enterprise Analytics Ready",
+                pipe_sql: "SQL Server Pipeline",
+                pipe_dax: "DAX Engine Memory",
+                pipe_rls: "Row Level Security",
 
-                skills_subtitle: "Core Competencies",
-                skills_title: "Technical Mastery & Data Stack",
-                skills_desc: "Over 5 years mastering the full lifecycle of data visualization, modeling, ETL pipeline development, and data governance.",
-                skill_pbi_title: "Power BI & Advanced DAX",
-                skill_pbi_desc: "Building dynamic, interactive dashboards with complex DAX measures, time intelligence, calculation groups, and row-level security (RLS).",
-                skill_model_title: "Data Modeling & Star Schema",
-                skill_model_desc: "Architecting efficient Star and Snowflake schemas, relationship cardinalities, data normalization, and aggregate table optimization.",
-                skill_sql_title: "SQL Queries & Data ETL",
-                skill_sql_desc: "Extracting, transforming, and querying relational databases using CTEs, window functions, complex joins, and stored procedures.",
-                skill_auto_title: "Automation & Python",
-                skill_auto_desc: "Automating repetitive reporting tasks using Google Apps Script, Python scripts (Pandas/Numpy), and scheduled data refreshes.",
-                skill_excel_title: "Advanced Excel & Analytics",
-                skill_excel_desc: "Expert-level spreadsheet modeling using Power Pivot, Power Query, complex formulas, macros, and financial metrics analysis.",
-                skill_bi_title: "Business Intelligence Strategy",
-                skill_bi_desc: "Translating stakeholder requirements into KPIs, building executive summaries, and conducting cohort & trend analysis.",
+                sim_badge: "Interactive Live BI Simulator",
+                sim_title: "Test Drive Power BI Filtering Capabilities",
+                sim_desc: "Adjust the slicers below to see live cross-filtering, dynamic KPI recalculations, and chart rendering.",
+                sim_metric_label: "Metric:",
+                slicer_region: "Region Slicer",
+                slicer_segment: "Customer Segment",
+                slicer_year: "Time Intelligence Period",
+                sim_kpi_1: "Calculated Primary Metric",
+                sim_kpi_2: "Average Order Value (AOV)",
+                sim_kpi_3: "Total Active Accounts",
+                sim_kpi_4: "DAX Calculation Time",
+                sim_chart1_title: "Performance Trend & Moving Average",
+                sim_chart2_title: "Product Line Distribution",
 
-                demo_badge: "Interactive Component",
-                demo_title: "Embedded Analytics Demo Dashboard",
-                demo_desc: "Test the live filtering functionality below to experience interactive reporting capabilities.",
-                filter_all: "All Regions",
-                filter_north: "North America",
-                filter_emea: "EMEA",
-                filter_apac: "APAC",
-                kpi_revenue: "Total Revenue",
-                kpi_profit: "Net Profit Margin",
-                kpi_orders: "Total Orders",
-                kpi_aov: "Avg Order Value",
-                chart_trend_title: "Monthly Revenue Performance vs Forecast",
-                chart_category_title: "Revenue by Product Line",
+                skills_subtitle: "Technical Proficiency",
+                skills_title: "Data Analytics & BI Competency Matrix",
+                skills_desc: "5+ Years mastering data modeling, advanced analytics, SQL ETL, and Power BI visualization.",
+                skill_detail_pbi: "Star Schema Modeling, Time Intelligence DAX, RLS Policies, Calculation Groups, Tabular Editor.",
+                skill_detail_sql: "PostgreSQL, MS SQL Server, Window Functions, CTEs, Complex Joins, Query Optimization.",
+                skill_detail_excel: "Power Pivot, Dynamic Arrays, Financial Variance Analysis, VBA Macro Automation.",
+                skill_detail_py: "Pandas, NumPy, Matplotlib, Automated Scheduled Data Extraction & Clean Pipelines.",
+                radar_title: "Competency Radar Balance",
 
-                projects_subtitle: "Featured Deliverables",
-                projects_title: "Dashboard Showcase",
-                p1_title: "Executive Global Sales Dashboard",
-                p1_desc: "Comprehensive multi-currency reporting dashboard built for corporate executives, featuring time-intelligence dynamic DAX measures, target variance tracking, and RLS.",
-                p2_title: "Customer Churn & Cohort Analysis",
-                p2_desc: "Advanced SQL analytics pipeline analyzing customer retention cohorts, lifetime value (LTV), purchase frequencies, and predictive churn indicators.",
-                p3_title: "Supply Chain & Warehouse Optimization",
-                p3_desc: "Interactive inventory dashboard optimizing safety stock levels, vendor lead times, stockout risks, and order fulfillment throughput.",
-                btn_view_details: "Details",
+                projects_subtitle: "Selected Deliverables",
+                projects_title: "Featured Case Studies",
+                cs1_title: "Enterprise Executive Sales & Financial Dashboard",
+                cs1_desc: "A multi-region financial reporting system replacing legacy manual Excel reports for 120+ corporate users with dynamic currency conversion and DAX target tracking.",
+                cs1_feat1: "Dynamic Time Intelligence DAX",
+                cs1_feat2: "Multi-Role Dynamic RLS Security",
+                cs2_title: "Customer Retention & Churn SQL Pipeline",
+                cs2_desc: "Built a high-performance PostgreSQL analytics engine evaluating customer purchasing cohorts, calculating lifetime value (LTV), and predicting churn behavior.",
+                cs2_feat1: "Advanced Window Functions & CTEs",
+                cs2_feat2: "Automated Daily ETL Pipelines",
+                cs3_title: "Supply Chain & Inventory Stock Optimizer",
+                cs3_desc: "Interactive warehouse management system tracking lead times, safety stock buffer levels, stockout risks, and supplier performance metrics.",
+                cs3_feat1: "Automated Stock Alert Triggers",
+                cs3_feat2: "Cross-Functional Logistics Views",
+                btn_case_study: "Read Case Study",
 
-                exp_subtitle: "Career Path",
-                exp_title: "5+ Years Professional Journey",
+                est_badge: "Interactive Calculator",
+                est_title: "Estimate Your BI Project Timeline & Budget",
+                est_desc: "Select your data requirements to calculate an estimated development effort, delivery timeline, and investment range.",
+                est_q1: "1. Number of Data Sources",
+                est_q2: "2. DAX & Analytics Complexity",
+                est_q3: "3. Dashboard Pages Needed",
+                est_res_title: "Estimated Project Parameters",
+                est_res_time: "Estimated Delivery Time",
+                est_res_effort: "Development Effort Hours",
+                est_res_budget: "Estimated Investment Range",
+                est_btn_book: "Book This Scope",
+
+                exp_subtitle: "Professional Milestones",
+                exp_title: "5+ Years Track Record",
                 job1_role: "Senior Data Analyst & Power BI Lead",
-                job1_l1: "Architected centralized Power BI reporting ecosystems serving over 150+ business stakeholders.",
-                job1_l2: "Reduced query execution time by 45% through Star Schema modeling and optimized DAX calculations.",
-                job1_l3: "Implemented Row-Level Security (RLS) policies to safeguard sensitive financial and HR datasets.",
+                job1_l1: "Architected enterprise Power BI reporting ecosystems serving over 180+ active business decision-makers.",
+                job1_l2: "Optimized complex DAX measures and Star Schema models, achieving a 45% reduction in query execution time.",
+                job1_l3: "Enforced multi-level Row-Level Security (RLS) protecting sensitive corporate financial assets.",
                 job2_role: "Data Analyst & BI Specialist",
-                job2_l1: "Designed end-to-end automated pipelines combining SQL Server, Power Query, and automated Excel reporting.",
-                job2_l2: "Created predictive sales forecasting models that improved quarterly inventory accuracy by 20%.",
-                job2_l3: "Trained 30+ team members on Power BI self-service reporting best practices.",
+                job2_l1: "Built automated SQL Server & Power Query ETL pipelines reducing manual reporting hours by 15 hours weekly.",
+                job2_l2: "Developed inventory forecasting dashboards improving stockout risk management by 20%.",
                 job3_role: "Junior Business Intelligence Analyst",
-                job3_l1: "Cleaned, transformed, and normalized raw operational data for executive dashboard integration.",
-                job3_l2: "Developed automated Google Apps Script solutions to streamline daily spreadsheet reporting.",
+                job3_l1: "Cleaned, transformed, and validated raw transactional databases for executive dashboard integration.",
+                job3_l2: "Created Google Apps Script & Excel VBA macros to automate operational data workflows.",
 
-                contact_subtitle: "Let's Connect",
-                contact_title: "Ready to Unlock Insights From Your Data?",
-                contact_desc: "Looking to build interactive Power BI dashboards, optimize existing DAX queries, or automate reporting workflows? Send a message and let's discuss your project.",
+                contact_subtitle: "Direct Communication",
+                contact_title: "Let's Discuss Your Data Analytics Project",
+                contact_desc: "Have raw datasets ready for Power BI or need DAX query speed optimization? Get in touch directly for consultation.",
                 form_name: "Your Name *",
                 form_email: "Your Email *",
-                form_subject: "Project Type / Subject *",
-                form_message: "Message *",
+                form_subject: "Project Type / Requirement *",
+                form_message: "Project Scope & Details *",
                 btn_send: "Send Message",
-                footer_tagline: "Built for Data Analytics & Power BI Excellence"
+                footer_tagline: "Built for Enterprise Data Analytics & Power BI Excellence"
             },
             ar: {
+                nav_role: "محلل بيانات ومطور باور بي اي",
                 nav_about: "نبذة عني",
-                nav_skills: "المهارات والأدوات",
-                nav_demo: "لوحة تفاعلية live",
-                nav_projects: "المشاريع",
-                nav_exp: "الخبرات العملية",
+                nav_dashboard: "المحاكي التفاعلي Live",
+                nav_skills: "مصفوفة المهارات",
+                nav_projects: "دراسات الحالة",
+                nav_estimator: "حاسبة التكلفة والوقت",
+                nav_exp: "الخبرات",
                 nav_contact: "تواصل معي",
                 hire_me: "تواصل معي",
 
-                hero_badge: "خبرة +5 سنوات في تحويل البيانات إلى قرارات",
+                hero_badge: "خبرة +5 سنوات في تحليل البيانات و Power BI",
                 hero_title_prefix: "مرحباً، أنا",
                 hero_name: "محمد أمين",
-                hero_subtitle: "محلل بيانات ومطور باور بي اي (Power BI Specialist)",
-                hero_desc: "متخصص في تحويل البيانات المعقدة إلى لوحات تحكم تفاعلية وسهلة الاستخدام لاتخاذ قرارات استراتيجية. خبرة متقدمة في بناء نماذج البيانات (Star Schema)، كتابة معادلات DAX المعقدة، تحسين استعلامات SQL، وأتمتة التقارير.",
+                hero_subtitle: "كبير محللي البيانات ومطور Power BI للمؤسسات",
+                hero_desc: "متخصص في تحويل بيانات المؤسسات المعقدة ومتعددة المصادر إلى لوحات تحكم تنفيذية سهلة الاستخدام. خبرة متقدمة في تسريع معادلات DAX، نمذجة البيانات (Star Schema)، أتمتة خطوط معالجة البيانات ETL، وقواعد SQL Server مع تطبيق أمان البيانات RLS.",
                 stat_exp: "سنوات خبرة",
                 stat_dashboards: "لوحة تحكم مصممة",
+                stat_dax: "تسريع استعلامات DAX",
                 stat_accuracy: "دقة البيانات",
-                btn_projects: "استعرض المشاريع",
-                btn_demo: "التجربة التفاعلية Live",
-                card_status: "● متاح للمشاريع والتعاقد",
-                hero_card_m1: "أداء معادلات DAX",
-                hero_card_m2: "أمان البيانات RLS",
-                hero_card_desc: "مصمم لتوفير أقصى سرعة في استخراج التقارير والفلترة المتقاطعة.",
+                btn_demo: "تجربة المحاكي التفاعلي",
+                btn_estimator: "حساب حجم وتكلفة المشروع",
+                card_status: "● جاهز لمشاريع المؤسسات",
+                pipe_sql: "ربط قاعدة SQL Server",
+                pipe_dax: "ذاكرة محرك DAX",
+                pipe_rls: "صلاحيات أمان البيانات",
 
-                skills_subtitle: "الخبرات المتقدمة",
-                skills_title: "المهارات الفنية وحزمة الأدوات",
-                skills_desc: "أكثر من 5 سنوات في إدارة دورة حياة تحليل البيانات بالكامل: من الربط والتنظيف إلى النمذجة والعرض التفاعلي.",
-                skill_pbi_title: "Power BI ومعادلات DAX المتقدمة",
-                skill_pbi_desc: "تصميم لوحات تحكم ديناميكية باستخدام قياسات DAX المعقدة، التحليل الزمني، مجموعات الحساب، وصلاحيات الوصول RLS.",
-                skill_model_title: "نمذجة البيانات (Star Schema)",
-                skill_model_desc: "بناء هيكلية Star & Snowflake Schema عالية الأداء، ضبط علاقات الجداول، والحد من تكرار البيانات.",
-                skill_sql_title: "استعلامات SQL ومعالجة البيانات",
-                skill_sql_desc: "استخراج وتنظيف البيانات من القواعد 관계ية باستخدام CTEs، window functions، والربط المعقد.",
-                skill_auto_title: "الأتمتة و بايثون (Python)",
-                skill_auto_desc: "أتمتة المهام المكررة والتقارير باستخدام Google Apps Script وسكريبتات Python (Pandas/Numpy).",
-                skill_excel_title: "إكسيل المتقدم والتحليل المالي",
-                skill_excel_desc: "نمذجة البيانات المعقدة باستخدام Power Pivot و Power Query والمعادلات المتقدمة وتحليل الانحرافات.",
-                skill_bi_title: "استراتيجية ذكاء الأعمال (BI)",
-                skill_bi_desc: "تحويل متطلبات العمل إلى مؤشرات أداء رئيسية (KPIs) وإعداد ملخصات تنفيذية وتحليل سلوك العملاء.",
+                sim_badge: "المحاكي التفاعلي المباشر (Live BI Simulator)",
+                sim_title: "تجربة إمكانيات الفلترة التفاعلية بـ Power BI",
+                sim_desc: "قم بتغيير خيارات الفلترة أدناه لملاحظة التحديث المباشر للمؤشرات الأساسية والرسم البياني.",
+                sim_metric_label: "المقياس:",
+                slicer_region: "فلتر المنطقة الجغرافية",
+                slicer_segment: "شريحة العملاء",
+                slicer_year: "الفترة الزمنية",
+                sim_kpi_1: "المقياس الرئيسي المحسوب",
+                sim_kpi_2: "متوسط قيمة الطلب (AOV)",
+                sim_kpi_3: "إجمالي الحسابات النشطة",
+                sim_kpi_4: "زمن معالجة معادله DAX",
+                sim_chart1_title: "اتجاه الأداء والمعدل المتحرك",
+                sim_chart2_title: "توزيع خطوط المنتجات",
 
-                demo_badge: "مكون تفاعلي حي",
-                demo_title: "لوحة تحكم تفاعلية مدمجة (Interactive Demo)",
-                demo_desc: "يمكنك تجربة فلترة البيانات حياً من خلال الأزرار التالية لملاحظة التغير المباشر في المؤشرات والرسم البياني.",
-                filter_all: "جميع المناطق",
-                filter_north: "أمريكا الشمالية",
-                filter_emea: "أوروبا والشرق الأوسط",
-                filter_apac: "آسيا والمحيط الهادئ",
-                kpi_revenue: "إجمالي الإيرادات",
-                kpi_profit: "هامش الربح الصافي",
-                kpi_orders: "إجمالي الطلبات",
-                kpi_aov: "متوسط قيمة الطلب",
-                chart_trend_title: "أداء الإيرادات الشهري مقارنة بالمتوقع",
-                chart_category_title: "الإيرادات حسب خط الإنتاج",
+                skills_subtitle: "المهارات الفنية",
+                skills_title: "مصفوفة كفاءات تحليل البيانات وذكاء الأعمال",
+                skills_desc: "أكثر من 5 سنوات في نمذجة البيانات، التحليل المتقدم، استعلامات SQL، ولوحات Power BI.",
+                skill_detail_pbi: "نمذجة Star Schema، معادلات DAX الزمنية، صلاحيات RLS، مجموعات الحساب Tabular Editor.",
+                skill_detail_sql: "قواعد PostgreSQL و MS SQL Server، Window Functions، CTEs، وتحسين الأداء.",
+                skill_detail_excel: "نمذجة Power Pivot، المصفوفات الديناميكية، تحليل الانحراف المالي، وأتمتة VBA.",
+                skill_detail_py: "مكتبات Pandas و NumPy، وأتمتة خطوط استخراج وتنظيف البيانات البرمجية.",
+                radar_title: "توازن مهارات التحليل",
 
-                projects_subtitle: "معرض الأعمال",
-                projects_title: "أبرز مشاريع لوحات التحكم",
-                p1_title: "لوحة المبيعات والمالية التنفيذية العالمية",
-                p1_desc: "لوحة تقارير متعددة العملات للمدراء التنفيذيين، تعتمد على معادلات DAX للتحليل الزمني وتتبع الانحراف عن الأهداف.",
-                p2_title: "تحليل معدل فقدان العملاء (SQL Cohort Analysis)",
-                p2_desc: "مشروع تحليل بيانات متقدم بـ SQL لدراسة سلوك العملاء، القيمة الممتدة (LTV)، ومعدلات الاحتفاظ بالعملاء.",
-                p3_title: "لوحة إدارة سلاسل الإمداد والمخازن",
-                p3_desc: "لوحة تفاعلية لمراقبة المخزون، تقليل مخاطر نفاد البضائع، وتحسين أوقات التوريد وكفاءة الشحن.",
-                btn_view_details: "التفاصيل",
+                projects_subtitle: "أبرز الأعمال",
+                projects_title: "دراسات حالة للمشاريع",
+                cs1_title: "لوحة المبيعات والمالية التنفيذية للمؤسسات",
+                cs1_desc: "منظومة تقارير مالية متعددة المناطق تستبدل التقارير اليدوية لـ 120+ مستخدم مع تحويل العملات وتتبع الأهداف بمعادلات DAX.",
+                cs1_feat1: "معادلات DAX للتحليل الزمني الديناميكي",
+                cs1_feat2: "صلاحيات RLS متعددة المستويات",
+                cs2_title: "تحليل معدل فقدان العملاء عبر SQL Pipeline",
+                cs2_desc: "بناء محرك تحليل بيانات بـ PostgreSQL لدراسة مجموعات العملاء (Cohorts)، حساب القيمة الممتدة LTV، والتنبؤ بالفقدان.",
+                cs2_feat1: "استخدام Window Functions و CTEs متقدمة",
+                cs2_feat2: "أتمتة خطوط نقل البيانات ETL يومياً",
+                cs3_title: "نظام تحسين وإدارة المخزون وسلاسل الإمداد",
+                cs3_desc: "لوحة تفاعلية لمراقبة المخازن ومستويات الأمان لمواجهة مخاطر نفاد البضائع وتتبع أداء الموردين.",
+                cs3_feat1: "تنبيهات أوتوماتيكية بنقص المخزون",
+                cs3_feat2: "شاشات متعددة الوظائف لسلاسل الإمداد",
+                btn_case_study: "قراءة دراسة الحالة",
+
+                est_badge: "الحاسبة التفاعلية",
+                est_title: "تقدير وقت وتكلفة مشروع لوحة التحاكم",
+                est_desc: "حدد متطلبات بياناتك لحساب تقدير تقريبي لوقت التطوير والتكلفة المتوقعة.",
+                est_q1: "1. عدد مصادر البيانات",
+                est_q2: "2. تعقيد معادلات DAX والتحليل",
+                est_q3: "3. عدد صفحات لوحة التحكم",
+                est_res_title: "تقدير حجم المشروع",
+                est_res_time: "المدة الزمنية للتسليم",
+                est_res_effort: "ساعات العمل المتوقعة",
+                est_res_budget: "ميزانية الاستثمار التقديرية",
+                est_btn_book: "اعتماد هذا النطاق",
 
                 exp_subtitle: "المسار المهني",
-                exp_title: "خبرة عمل تتجاوز 5 سنوات",
+                exp_title: "خبرة متراكمة تتجاوز 5 سنوات",
                 job1_role: "كبير محللي البيانات ومطور Power BI الرئيسي",
-                job1_l1: "تصميم وتنفيذ منظومة تقارير Power BI مركزية تخدم أكثر من 150 مستخدم وقيادي.",
-                job1_l2: "تسريع زمن استجابة الاستعلامات بنسبة 45% عبر إعادة نمذجة البيانات وتطبيق Star Schema.",
-                job1_l3: "تطبيق سياسات حماية البيانات RLS لتأمين التقارير المالية والحساسة.",
+                job1_l1: "تصميم بنية تقارير Power BI للمؤسسات تخدم أكثر من 180 صناع قرار تنفيذي.",
+                job1_l2: "تحسين معادلات DAX ونماذج Star Schema للحد من زمن استجابة الاستعلامات بنسبة 45%.",
+                job1_l3: "تطبيق سياسات حماية البيانات RLS لتأمين التقارير المالية.",
                 job2_role: "محلل بيانات وأخصائي ذكاء الأعمال",
-                job2_l1: "بناء خطوط معالجة أوتوماتيكية تعتمد على SQL Server و Power Query والتقارير المباشرة.",
-                job2_l2: "إنشاء نماذج تنبؤ بالمبيعات ساهمت في تحسين دقة إدارة المخزون بنسبة 20%.",
-                job2_l3: "تدريب أكثر من 30 موظفاً على استخدام Power BI للتقارير الذاتية.",
+                job2_l1: "بناء خطوط معالجة أوتوماتيكية تعتمد على SQL Server و Power Query وفرت 15 ساعة عمل أسبوعياً.",
+                job2_l2: "إنشاء لوحات التنبؤ بالمبيعات ساهمت في تحسين إدارة المخزون بنسبة 20%.",
                 job3_role: "محلل ذكاء أعمال (BI Analyst)",
                 job3_l1: "تنظيف وتهيئة البيانات التشغيلية وتحويلها إلى لوحات تقارير جانبية للمدراء.",
-                job3_l2: "تطوير حلول أتمتة عبر Google Apps Script لتسريع إعداد التقارير اليومية.",
+                job3_l2: "تطوير حلول أتمتة عبر Google Apps Script و Excel VBA لتسريع إعداد التقارير.",
 
-                contact_subtitle: "تواصل معي",
-                contact_title: "هل أنت جاهز لتحويل بياناتك إلى رؤى قيّمة؟",
-                contact_desc: "هل تبحث عن تصميم لوحات Power BI تفاعلية، أو تحسين أداء معادلات DAX، أو أتمتة تقاريرك؟ أرسل رسالتك وسأكون سعيداً بمناقشة مشروعك.",
+                contact_subtitle: "تواصل مباشر",
+                contact_title: "هل أنت جاهز لبدء مشروع تحليل البيانات؟",
+                contact_desc: "هل لديك بيانات جاهزة وتحتاج إلى لوحات Power BI تفاعلية أو تحسين أداء معادلات DAX؟ تواصل معي مباشرة.",
                 form_name: "الاسم الكريم *",
                 form_email: "البريد الإلكتروني *",
-                form_subject: "نوع المشروع / الموضوع *",
-                form_message: "تفاصيل المشروع *",
+                form_subject: "نوع المشروع / المتطلب *",
+                form_message: "تفاصيل ونطاق المشروع *",
                 btn_send: "إرسال الرسالة",
-                footer_tagline: "تصميم مخصص لتحليل البيانات وذكريات التميز في Power BI"
+                footer_tagline: "تصميم مخصص للتميز في تحليل البيانات و Power BI"
             }
         };
 
         let currentLang = 'en';
 
-        // Toggle Language Function
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
             
-            // Toggle HTML dir & lang attributes
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 
-            // Change button UI
             document.getElementById('lang-text').textContent = currentLang === 'en' ? 'العربية' : 'English';
 
-            // Switch Font Family Class
             if (currentLang === 'ar') {
                 document.body.classList.add('font-ar');
                 document.body.classList.remove('font-en');
@@ -995,92 +1084,116 @@
                 document.body.classList.remove('font-ar');
             }
 
-            // Apply translations
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.textContent = translations[currentLang][key];
+                if (i18n[currentLang][key]) {
+                    el.textContent = i18n[currentLang][key];
                 }
             });
+
+            // Re-render radar chart labels for language switch
+            renderRadarChart();
         }
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // Projects Filter
-        function filterProjects(category) {
-            const cards = document.querySelectorAll('.project-card');
-            const btns = document.querySelectorAll('.project-filter-btn');
+        /* LIVE BI SIMULATOR LOGIC */
+        let activeMetric = 'revenue';
+        let biMainChartObj = null;
+        let biPieChartObj = null;
 
-            btns.forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.classList.add('bg-brand-cyan', 'text-black');
-                    btn.classList.remove('text-gray-400', 'bg-brand-card');
-                } else {
-                    btn.classList.remove('bg-brand-cyan', 'text-black');
-                    btn.classList.add('text-gray-400', 'bg-brand-card');
-                }
-            });
-
-            cards.forEach(card => {
-                const cardCat = card.getAttribute('data-category');
-                if (category === 'all' || cardCat.includes(category)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        const demoData = {
-            all: {
-                revenue: '$1,482,900', profit: '28.4%', orders: '12,450', aov: '$119.10',
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                values: [120000, 145000, 160000, 180000, 210000, 205000, 230000, 232900],
-                categories: [40, 30, 20, 10]
+        const biDataMaster = {
+            revenue: {
+                base: 1845200, aov: "$482.50", accounts: "1,420",
+                series: [120000, 145000, 160000, 190000, 210000, 240000, 280000, 310000, 330200],
+                pie: [45, 30, 15, 10]
             },
-            north: {
-                revenue: '$680,000', profit: '31.2%', orders: '5,200', aov: '$130.70',
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                values: [60000, 72000, 80000, 95000, 105000, 98000, 110000, 110000],
-                categories: [50, 25, 15, 10]
+            profit: {
+                base: "$524,800 (28.4%)", aov: "31.2% Margin", accounts: "1,420",
+                series: [32000, 41000, 48000, 56000, 62000, 71000, 84000, 92000, 98800],
+                pie: [50, 25, 15, 10]
             },
-            emea: {
-                revenue: '$520,000', profit: '26.8%', orders: '4,800', aov: '$108.30',
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                values: [40000, 48000, 55000, 60000, 70000, 72000, 85000, 90000],
-                categories: [30, 35, 25, 10]
-            },
-            apac: {
-                revenue: '$282,900', profit: '24.1%', orders: '2,450', aov: '$115.40',
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
-                values: [20000, 25000, 25000, 25000, 35000, 35000, 35000, 32900],
-                categories: [35, 30, 20, 15]
+            volume: {
+                base: "12,480 Units", aov: "8.8 Items/Order", accounts: "1,420",
+                series: [800, 950, 1100, 1300, 1450, 1600, 1750, 1800, 1730],
+                pie: [35, 35, 20, 10]
             }
         };
 
-        let trendChartObj, categoryChartObj;
+        function changeBiMetric(metric) {
+            activeMetric = metric;
+            document.querySelectorAll('.metric-select-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-cyan', 'text-black', 'font-bold');
+                btn.classList.add('text-gray-400', 'font-medium');
+            });
 
-        function initCharts() {
-            const ctx1 = document.getElementById('trendChart').getContext('2d');
-            const ctx2 = document.getElementById('categoryChart').getContext('2d');
+            const activeBtn = document.getElementById(`metric-btn-${metric}`);
+            activeBtn.classList.add('bg-brand-cyan', 'text-black', 'font-bold');
+            activeBtn.classList.remove('text-gray-400', 'font-medium');
 
-            trendChartObj = new Chart(ctx1, {
+            runBiFilter();
+        }
+
+        function runBiFilter() {
+            const reg = document.getElementById('slicer-region').value;
+            const seg = document.getElementById('slicer-segment').value;
+            const yr = document.getElementById('slicer-year').value;
+
+            // Multiplier simulation logic based on slicers
+            let factor = 1.0;
+            if (reg === 'north_america') factor *= 0.5;
+            if (reg === 'emea') factor *= 0.35;
+            if (reg === 'apac') factor *= 0.15;
+
+            if (seg === 'enterprise') factor *= 0.6;
+            if (seg === 'smb') factor *= 0.3;
+            if (seg === 'government') factor *= 0.1;
+
+            if (yr === '2026') factor *= 0.65; // YTD factor
+
+            const baseObj = biDataMaster[activeMetric];
+
+            // Update KPI Card 1 value
+            if (activeMetric === 'revenue') {
+                const calculated = Math.round(1845200 * factor);
+                document.getElementById('sim-val-1').textContent = `$${calculated.toLocaleString()}`;
+            } else if (activeMetric === 'profit') {
+                const calculated = Math.round(524800 * factor);
+                document.getElementById('sim-val-1').textContent = `$${calculated.toLocaleString()}`;
+            } else {
+                const calculated = Math.round(12480 * factor);
+                document.getElementById('sim-val-1').textContent = `${calculated.toLocaleString()} Units`;
+            }
+
+            // Update simulated charts
+            const newSeries = baseObj.series.map(v => Math.round(v * factor));
+            biMainChartObj.data.datasets[0].data = newSeries;
+            biMainChartObj.update();
+
+            biPieChartObj.data.datasets[0].data = baseObj.pie;
+            biPieChartObj.update();
+        }
+
+        function initBiCharts() {
+            const ctx1 = document.getElementById('biSimMainChart').getContext('2d');
+            const ctx2 = document.getElementById('biSimPieChart').getContext('2d');
+
+            biMainChartObj = new Chart(ctx1, {
                 type: 'line',
                 data: {
-                    labels: demoData.all.labels,
+                    labels: ['Q1-Jan', 'Q1-Feb', 'Q1-Mar', 'Q2-Apr', 'Q2-May', 'Q2-Jun', 'Q3-Jul', 'Q3-Aug', 'Q3-Sep'],
                     datasets: [{
-                        label: 'Revenue ($)',
-                        data: demoData.all.values,
+                        label: 'Calculated Trend',
+                        data: biDataMaster.revenue.series,
                         borderColor: '#06B6D4',
-                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        backgroundColor: 'rgba(6, 182, 212, 0.12)',
                         fill: true,
-                        tension: 0.4,
+                        tension: 0.35,
                         borderWidth: 3,
-                        pointBackgroundColor: '#00F2FE'
+                        pointBackgroundColor: '#00F2FE',
+                        pointRadius: 4
                     }]
                 },
                 options: {
@@ -1088,18 +1201,18 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { color: '#1F2937' }, ticks: { color: '#9CA3AF' } },
-                        y: { grid: { color: '#1F2937' }, ticks: { color: '#9CA3AF' } }
+                        x: { grid: { color: 'rgba(51, 65, 85, 0.4)' }, ticks: { color: '#9CA3AF', font: { size: 10 } } },
+                        y: { grid: { color: 'rgba(51, 65, 85, 0.4)' }, ticks: { color: '#9CA3AF', font: { size: 10 } } }
                     }
                 }
             });
 
-            categoryChartObj = new Chart(ctx2, {
+            biPieChartObj = new Chart(ctx2, {
                 type: 'doughnut',
                 data: {
-                    labels: ['Software', 'Hardware', 'Services', 'Consulting'],
+                    labels: ['Enterprise', 'SMB', 'Public', 'Consumer'],
                     datasets: [{
-                        data: demoData.all.categories,
+                        data: biDataMaster.revenue.pie,
                         backgroundColor: ['#06B6D4', '#3B82F6', '#8B5CF6', '#10B981'],
                         borderWidth: 0
                     }]
@@ -1114,95 +1227,178 @@
             });
         }
 
-        function updateDemoChart(region) {
-            const data = demoData[region];
-            
-            // Update KPI text values
-            document.getElementById('kpi-val-revenue').textContent = data.revenue;
-            document.getElementById('kpi-val-profit').textContent = data.profit;
-            document.getElementById('kpi-val-orders').textContent = data.orders;
-            document.getElementById('kpi-val-aov').textContent = data.aov;
+        /* SKILL RADAR CHART */
+        let radarChartObj = null;
 
-            // Update Chart datasets
-            trendChartObj.data.datasets[0].data = data.values;
-            trendChartObj.update();
+        function renderRadarChart() {
+            const ctx = document.getElementById('skillsRadarChart').getContext('2d');
+            if (radarChartObj) radarChartObj.destroy();
 
-            categoryChartObj.data.datasets[0].data = data.categories;
-            categoryChartObj.update();
+            const labels = currentLang === 'ar' 
+                ? ['نمذجة Power BI', 'معادلات DAX', 'استعلامات SQL', 'تحليل Excel', 'أتمتة Python', 'استراتيجية BI']
+                : ['Power BI Modeling', 'DAX Measures', 'SQL Analytics', 'Excel Pivot', 'Python ETL', 'BI Strategy'];
 
-            // Highlight Active Button
-            document.querySelectorAll('.filter-demo-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-cyan', 'text-black', 'font-bold');
-                btn.classList.add('text-gray-400', 'font-medium');
+            radarChartObj = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Proficiency Level %',
+                        data: [98, 95, 92, 95, 85, 90],
+                        backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                        borderColor: '#06B6D4',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#00F2FE'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(51, 65, 85, 0.5)' },
+                            grid: { color: 'rgba(51, 65, 85, 0.5)' },
+                            pointLabels: { color: '#CBD5E1', font: { size: 10 } },
+                            ticks: { display: false, backdropColor: 'transparent' }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
             });
-
-            const activeBtn = document.getElementById(`btn-filter-${region}`);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-brand-cyan', 'text-black', 'font-bold');
-                activeBtn.classList.remove('text-gray-400', 'font-medium');
-            }
         }
 
-        const projectModalData = {
-            p1: {
-                title: "Executive Global Sales Dashboard",
-                tech: "Power BI, DAX, Star Schema, Dynamic RLS",
-                summary: "Designed an enterprise-grade executive report consolidating data from 4 distinct regions. Developed custom DAX time intelligence functions for Year-Over-Year variance calculations and dynamic currency conversion."
+        /* PROJECT FILTER TABS */
+        function filterProjects(cat) {
+            document.querySelectorAll('.proj-tab-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === cat) {
+                    btn.classList.add('bg-brand-cyan', 'text-black');
+                    btn.classList.remove('text-gray-400', 'bg-brand-card');
+                } else {
+                    btn.classList.remove('bg-brand-cyan', 'text-black');
+                    btn.classList.add('text-gray-400', 'bg-brand-card');
+                }
+            });
+
+            document.querySelectorAll('.project-item').forEach(item => {
+                const itemCat = item.getAttribute('data-category');
+                if (cat === 'all' || itemCat.includes(cat)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        /* ESTIMATOR CALCULATOR LOGIC */
+        function calculateProjectScope() {
+            const sources = parseInt(document.querySelector('input[name="est_sources"]:checked').value);
+            const dax = parseInt(document.querySelector('input[name="est_dax"]:checked').value);
+            const pages = parseInt(document.querySelector('input[name="est_pages"]:checked').value);
+
+            const score = sources + dax + pages; // Scale from 3 to 9
+
+            let timeStr = "3 - 5 Days";
+            let hoursStr = "15 - 25 Hours";
+            let budgetStr = "$350 - $500";
+
+            if (score >= 5 && score <= 7) {
+                timeStr = "7 - 10 Business Days";
+                hoursStr = "35 - 50 Hours";
+                budgetStr = "$700 - $1,100";
+            } else if (score > 7) {
+                timeStr = "12 - 18 Business Days";
+                hoursStr = "60 - 90 Hours";
+                budgetStr = "$1,300 - $2,200";
+            }
+
+            document.getElementById('est-time-output').textContent = timeStr;
+            document.getElementById('est-hours-output').textContent = hoursStr;
+            document.getElementById('est-budget-output').textContent = budgetStr;
+        }
+
+        function prefillContactForm() {
+            const sub = document.getElementById('input-subject');
+            sub.value = "Power BI Executive Dashboard";
+            document.getElementById('input-message').placeholder = "I selected a project scope from the ROI Estimator...";
+        }
+
+        /* CASE STUDY MODAL DATA */
+        const caseStudiesData = {
+            cs1: {
+                title: "Enterprise Executive Sales & Financial Dashboard",
+                tech: "Power BI, DAX, Tabular Editor, Star Schema, SQL Server",
+                problem: "The enterprise client was manually aggregating 12 regional Excel sheets weekly, taking 15+ hours with frequent data discrepancies.",
+                solution: "Designed a consolidated Star Schema data model in Power BI with dynamic DAX time intelligence, multi-currency conversion, and dynamic RLS for regional managers.",
+                impact: "Reduced reporting preparation time to zero (fully automated), improved query response to under 15ms, and increased sales target visibility by 28%."
             },
-            p2: {
-                title: "Customer Churn & Cohort Analysis",
-                titleAr: "تحليل معدل فقدان العملاء",
-                tech: "SQL Server, PostgreSQL, Power Query, CTEs",
-                summary: "Created complex SQL queries using Common Table Expressions (CTEs) and Window Functions to group customers by acquisition cohorts, calculating rolling retention rates and lifetime values."
+            cs2: {
+                title: "Customer Retention & Churn SQL Analytics Engine",
+                tech: "PostgreSQL, SQL CTEs, Window Functions, Python, Power BI",
+                problem: "High customer acquisition costs without clear visibility into user retention cohorts or lifetime values (LTV).",
+                solution: "Engineered automated SQL pipelines analyzing user transaction history by purchasing cohorts, building predictive churn flag indicators.",
+                impact: "Decreased customer churn by 18% within 2 quarters through proactive retention campaigns triggered by the dashboard."
             },
-            p3: {
-                title: "Supply Chain & Warehouse Optimization",
-                tech: "Power BI, Python (Pandas), Excel, Power Query",
-                summary: "Constructed an automated operational inventory tracker that monitors safety stock levels, safety buffer thresholds, lead times, and alerts supply chain managers before stockouts occur."
+            cs3: {
+                title: "Supply Chain & Warehouse Stock Optimizer",
+                tech: "Power BI, Power Query M, Excel Power Pivot, Supply Chain Analytics",
+                problem: "Frequent warehouse stockout incidents and delayed lead times due to unmonitored safety stock thresholds.",
+                solution: "Constructed an automated inventory tracker monitoring safety stock buffers, supplier delivery times, and inventory turnover ratios.",
+                impact: "Achieved zero stockout occurrences across 5 regional warehouses over 12 consecutive months."
             }
         };
 
-        function openProjectModal(projectId) {
-            const modal = document.getElementById('project-modal');
-            const content = document.getElementById('modal-content');
-            const item = projectModalData[projectId];
+        function openCaseStudyModal(id) {
+            const modal = document.getElementById('case-study-modal');
+            const body = document.getElementById('modal-body');
+            const cs = caseStudiesData[id];
 
-            content.innerHTML = `
+            body.innerHTML = `
                 <div class="space-y-4">
-                    <span class="text-xs font-bold text-brand-cyan uppercase tracking-widest">${item.tech}</span>
-                    <h3 class="text-2xl font-bold text-white">${item.title}</h3>
-                    <div class="p-4 bg-brand-dark rounded-xl border border-brand-border text-sm text-gray-300 leading-relaxed">
-                        ${item.summary}
+                    <span class="text-xs font-bold text-brand-cyan uppercase tracking-widest font-mono">${cs.tech}</span>
+                    <h3 class="text-2xl font-black text-white">${cs.title}</h3>
+                    
+                    <div class="space-y-3 pt-2 text-xs text-slate-300">
+                        <div class="p-3 bg-brand-dark rounded-xl border border-brand-border">
+                            <span class="font-bold text-red-400 block mb-1">Challenge / Problem:</span>
+                            <p>${cs.problem}</p>
+                        </div>
+                        <div class="p-3 bg-brand-dark rounded-xl border border-brand-border">
+                            <span class="font-bold text-brand-cyan block mb-1">Delivered Solution:</span>
+                            <p>${cs.solution}</p>
+                        </div>
+                        <div class="p-3 bg-brand-dark rounded-xl border border-brand-border">
+                            <span class="font-bold text-emerald-400 block mb-1">Key Impact Metrics:</span>
+                            <p>${cs.impact}</p>
+                        </div>
                     </div>
+
                     <div class="pt-4 border-t border-brand-border flex justify-end">
-                        <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl bg-brand-cyan text-black font-bold text-xs">Close Preview</button>
+                        <button onclick="closeCaseStudyModal()" class="px-5 py-2 rounded-xl bg-brand-cyan text-black font-bold text-xs">Close Case Study</button>
                     </div>
                 </div>
             `;
+
             modal.classList.remove('hidden');
         }
 
-        function closeProjectModal() {
-            document.getElementById('project-modal').classList.add('hidden');
+        function closeCaseStudyModal() {
+            document.getElementById('case-study-modal').classList.add('hidden');
         }
 
-        // Contact Form Handler
-        function handleFormSubmit(e) {
+        function submitContactForm(e) {
             e.preventDefault();
-            const msgBox = document.getElementById('form-response-msg');
-            msgBox.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
-            msgBox.classList.add('bg-emerald-500/20', 'text-emerald-400');
-            msgBox.textContent = currentLang === 'ar' ? 'تم إرسال رسالتك بنجاح! سيتواصل معك محمد أمين قريباً.' : 'Message sent successfully! Mohamed Amin will get back to you shortly.';
-            
-            document.getElementById('portfolio-contact-form').reset();
-            
-            setTimeout(() => {
-                msgBox.classList.add('hidden');
-            }, 5000);
+            const status = document.getElementById('form-status');
+            status.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
+            status.classList.add('bg-emerald-500/20', 'text-emerald-400');
+            status.textContent = currentLang === 'ar' ? 'تم استقبال رسالتك بنجاح! سيتواصل معك محمد أمين في أقرب وقت.' : 'Message received successfully! Mohamed Amin will respond to you shortly.';
+            document.getElementById('contact-form').reset();
+            setTimeout(() => status.classList.add('hidden'), 5000);
         }
 
         window.onload = function() {
-            initCharts();
+            initBiCharts();
+            renderRadarChart();
+            calculateProjectScope();
         };
     </script>
 </body>
